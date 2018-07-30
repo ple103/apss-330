@@ -1,6 +1,5 @@
-﻿using System;
+using System;
 using Xamarin.Forms;
-using mewmont.Views;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation (XamlCompilationOptions.Compile)]
@@ -8,11 +7,9 @@ namespace mewmont
 {
 	public partial class App : Application
 	{
-		
 		public App ()
 		{
 			InitializeComponent();
-
 
 			MainPage = new MainPage();
 		}
