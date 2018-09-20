@@ -4,11 +4,13 @@
              xmlns:local="clr-namespace:mewmont"
              x:Class="mewmont.MainPage">
 
-    <StackLayout>
-        <!-- Place new controls here -->
-    	<Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+    <StackLayout Orientation="Vertical">
+        <WebView x:Name="MediaViewer" Source="https://www.youtube.com/embed/wA-qqOP9p6Q" HeightRequest="{Binding MediaHeight}">
+            <WebView.BindingContext>
+                <local:RoomViewModel />
+            </WebView.BindingContext>
+        </WebView>
+        <Label x:Name="debugInfo"></Label>
     </StackLayout>
 
 </ContentPage>
