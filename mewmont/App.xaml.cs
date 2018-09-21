@@ -14,7 +14,7 @@ namespace mewmont
 		{
 			InitializeComponent();
 
-			MainPage = new MainPage();
+			MainPage = new RoomPage();
 		}
 
 		protected override void OnStart ()

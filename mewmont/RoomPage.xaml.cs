@@ -7,9 +7,9 @@ using Xamarin.Forms;
 
 namespace mewmont
 {
-	public partial class MainPage : ContentPage
+	public partial class RoomPage : ContentPage
 	{
-		public MainPage()
+		public RoomPage()
 		{
 			InitializeComponent();
 		}
