@@ -13,5 +13,15 @@ namespace mewmont
 		{
 			InitializeComponent();
 		}
-	}
+
+        private void MessageEntry_Focused(object sender, FocusEventArgs e)
+        {
+            OptionButtons.IsVisible = false;
+        }
+
+        private void MessageEntry_Unfocused(object sender, FocusEventArgs e)
+        {
+            OptionButtons.IsVisible = true;
+        }
+    }
 }

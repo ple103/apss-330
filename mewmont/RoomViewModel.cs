@@ -10,11 +10,6 @@ namespace mewmont
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public RoomViewModel()
-        {
-
-        }
-
         public double MediaHeight
         {
             get

@@ -4,80 +4,105 @@
              xmlns:local="clr-namespace:mewmont"
              x:Class="mewmont.RoomPage"
              BackgroundColor="{StaticResource PageBackgroundColor}">
+    <ContentPage.BindingContext>
+        <local:RoomViewModel />
+    </ContentPage.BindingContext>
 
     <StackLayout Orientation="Vertical">
-        <WebView x:Name="MediaViewer" Source="https://www.youtube.com/embed/wA-qqOP9p6Q" HeightRequest="{Binding MediaHeight}">
-            <WebView.BindingContext>
-                <local:RoomViewModel />
-            </WebView.BindingContext>
+        <WebView x:Name="MediaViewer" 
+                 Source="https://www.youtube.com/embed/wA-qqOP9p6Q" 
+                 HeightRequest="{Binding MediaHeight}"
+                 VerticalOptions="Start">
         </WebView>
-        <RelativeLayout x:Name="MessageBox">
-            <Entry Placeholder="Compose message" BackgroundColor="{StaticResource PanelBackgroundColor}" PlaceholderColor="Gray" TextColor="{StaticResource TextColor}"
-                RelativeLayout.WidthConstraint="{ConstraintExpression
-                Type=RelativeToParent,Property=Width,Factor=0.85,Constant=0}"
-                HeightRequest="40"/>
-            <Button TextColor="{StaticResource TextColor}" Text="&#xf1d8;"
-                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                Property=Width,Factor=0.875,Constant=0}"
-                BackgroundColor="{StaticResource DefaultButtonColor}"
-                BorderRadius="20"
-                HeightRequest="40" WidthRequest="40">
-                <Button.FontFamily>
-                    <OnPlatform x:TypeArguments="x:String">
-                        <On Platform="iOS" Value="Font Awesome 5 Free" />
-                        <On Platform="Android" Value="fa-regular-400.ttf#Font Awesome 5 Free" />
-                        <On Platform="UWP" Value="Assets/Fonts/fa-regular-400#Font Awesome 5 Free" />
-                    </OnPlatform>
-                </Button.FontFamily>
-            </Button>
-        </RelativeLayout>
-        <RelativeLayout x:Name="ConfigRow">
-            <!-- Room Settings Button-->
-            <Button TextColor="{StaticResource TextColor}" Text="&#xf0ad;"
-                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                Property=Width,Factor=0.25,Constant=-20}"
-                BackgroundColor="{StaticResource DefaultButtonColor}"
-                BorderRadius="20"
-                HeightRequest="40" WidthRequest="40">
-                <Button.FontFamily>
-                    <OnPlatform x:TypeArguments="x:String">
-                        <On Platform="iOS" Value="Font Awesome 5 Free" />
-                        <On Platform="Android" Value="fa-regular-400.ttf#Font Awesome 5 Free" />
-                        <On Platform="UWP" Value="Assets/Fonts/fa-regular-400#Font Awesome 5 Free" />
-                    </OnPlatform>
-                </Button.FontFamily>
-            </Button>
-            <!-- Chat Mode Button-->
-            <Button TextColor="{StaticResource TextColor}" Text="&#xf086;"
-                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                Property=Width,Factor=0.5,Constant=-20}"
-                BackgroundColor="{StaticResource SecondaryButtonColor}"
-                BorderRadius="20"
-                HeightRequest="40" WidthRequest="40">
-                <Button.FontFamily>
-                    <OnPlatform x:TypeArguments="x:String">
-                        <On Platform="iOS" Value="Font Awesome 5 Free" />
-                        <On Platform="Android" Value="fa-regular-400.ttf#Font Awesome 5 Free" />
-                        <On Platform="UWP" Value="Assets/Fonts/fa-regular-400#Font Awesome 5 Free" />
-                    </OnPlatform>
-                </Button.FontFamily>
-            </Button>
-            <!-- Exit Button-->
-            <Button TextColor="{StaticResource TextColor}" Text="&#xf2f5;"
-                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                Property=Width,Factor=0.75,Constant=-20}"
-                BackgroundColor="{StaticResource ThirdaryButtonColor}"
-                BorderRadius="20"
-                HeightRequest="40" WidthRequest="40">
-                <Button.FontFamily>
-                    <OnPlatform x:TypeArguments="x:String">
-                        <On Platform="iOS" Value="Font Awesome 5 Free" />
-                        <On Platform="Android" Value="fa-regular-400.ttf#Font Awesome 5 Free" />
-                        <On Platform="UWP" Value="Assets/Fonts/fa-regular-400#Font Awesome 5 Free" />
-                    </OnPlatform>
-                </Button.FontFamily>
-            </Button>
-        </RelativeLayout>
+        <!-- Chat Area -->
+        <StackLayout x:Name="ChatArea" 
+                     Orientation="Vertical"
+                     VerticalOptions="FillAndExpand"
+                     Margin="5, 5, 5, 5">
+            <!-- Chat Box Section -->
+            <ScrollView VerticalOptions="CenterAndExpand">
+                <StackLayout>
+                    <Label>Hello</Label>
+                </StackLayout>
+            </ScrollView>
+            <!-- Message Box Section -->
+            <StackLayout x:Name="MessageBox"
+                         VerticalOptions="End"
+                         Orientation="Horizontal">
+                <!-- Option Buttons -->
+                <StackLayout x:Name="OptionButtons"
+                             Orientation="Horizontal"
+                             HorizontalOptions="Start"
+                             IsVisible="True">
+                    <!-- Room Settings Button-->
+                    <Button TextColor="{StaticResource TextColor}" Text="&#xf0ad;"
+                            BackgroundColor="{StaticResource DefaultButtonColor}"
+                            BorderRadius="20"
+                            HeightRequest="40" 
+                            WidthRequest="40">
+                        <Button.FontFamily>
+                            <OnPlatform x:TypeArguments="x:String">
+                                <On Platform="iOS" Value="Font Awesome 5 Free" />
+                                <On Platform="Android" Value="fa-regular-400.ttf#Font Awesome 5 Free" />
+                                <On Platform="UWP" Value="Assets/Fonts/fa-regular-400#Font Awesome 5 Free" />
+                            </OnPlatform>
+                        </Button.FontFamily>
+                    </Button>
+                    <!-- Chat Mode Button-->
+                    <Button TextColor="{StaticResource TextColor}" Text="&#xf086;"
+                            BackgroundColor="{StaticResource SecondaryButtonColor}"
+                            BorderRadius="20"
+                            HeightRequest="40" WidthRequest="40">
+                        <Button.FontFamily>
+                            <OnPlatform x:TypeArguments="x:String">
+                                <On Platform="iOS" Value="Font Awesome 5 Free" />
+                                <On Platform="Android" Value="fa-regular-400.ttf#Font Awesome 5 Free" />
+                                <On Platform="UWP" Value="Assets/Fonts/fa-regular-400#Font Awesome 5 Free" />
+                            </OnPlatform>
+                        </Button.FontFamily>
+                    </Button>
+                    <!-- Exit Button-->
+                    <Button TextColor="{StaticResource TextColor}" Text="&#xf2f5;"
+                            BackgroundColor="{StaticResource ThirdaryButtonColor}"
+                            BorderRadius="20"
+                            HeightRequest="40"
+                            WidthRequest="40">
+                        <Button.FontFamily>
+                            <OnPlatform x:TypeArguments="x:String">
+                                <On Platform="iOS" Value="Font Awesome 5 Free" />
+                                <On Platform="Android" Value="fa-regular-400.ttf#Font Awesome 5 Free" />
+                                <On Platform="UWP" Value="Assets/Fonts/fa-regular-400#Font Awesome 5 Free" />
+                            </OnPlatform>
+                        </Button.FontFamily>
+                    </Button>
+                </StackLayout>
+                <Entry x:Name="MessageEntry"
+                       Placeholder="Aa" 
+                       BackgroundColor="{StaticResource PanelBackgroundColor}" 
+                       PlaceholderColor="Gray" 
+                       TextColor="{StaticResource TextColor}"
+                       HeightRequest="30"
+                       HorizontalOptions="FillAndExpand"
+                       Focused="MessageEntry_Focused"
+                       Unfocused="MessageEntry_Unfocused"/>
+                <Button TextColor="{StaticResource TextColor}" Text="&#xf1d8;"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                        Property=Width,Factor=0.875,Constant=0}"
+                        BackgroundColor="{StaticResource DefaultButtonColor}"
+                        BorderRadius="20"
+                        HeightRequest="40" 
+                        WidthRequest="40"
+                        HorizontalOptions="End">
+                    <Button.FontFamily>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <On Platform="iOS" Value="Font Awesome 5 Free" />
+                            <On Platform="Android" Value="fa-regular-400.ttf#Font Awesome 5 Free" />
+                            <On Platform="UWP" Value="Assets/Fonts/fa-regular-400#Font Awesome 5 Free" />
+                        </OnPlatform>
+                    </Button.FontFamily>
+                </Button>
+            </StackLayout>
+        </StackLayout>
     </StackLayout>
 
 </ContentPage>
