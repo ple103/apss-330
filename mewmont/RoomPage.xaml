@@ -20,9 +20,15 @@
                      VerticalOptions="FillAndExpand"
                      Margin="5, 5, 5, 5">
             <!-- Chat Box Section -->
-            <ScrollView VerticalOptions="CenterAndExpand">
-                <StackLayout>
-                    <Label>Hello</Label>
+            <ScrollView VerticalOptions="FillAndExpand">
+                <StackLayout x:Name="ChatBoxContent"
+                             Orientation="Vertical"
+                             VerticalOptions="EndAndExpand">
+                    <!-- Messages -->
+                    <StackLayout Orientation="Vertical">
+                        <Label TextColor="LightGreen">JCurtis</Label>
+                        <Label TextColor="{StaticResource TextColor}">I am a message. A very long message, an even longer message. This is one big message.</Label>
+                    </StackLayout>
                 </StackLayout>
             </ScrollView>
             <!-- Message Box Section -->
