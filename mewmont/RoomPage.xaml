@@ -40,6 +40,21 @@
                              Orientation="Horizontal"
                              HorizontalOptions="Start"
                              IsVisible="True">
+                    <!-- Exit Button-->
+                    <Button TextColor="{StaticResource TextColor}" Text="&#xf2f5;"
+                            BackgroundColor="{StaticResource ThirdaryButtonColor}"
+                            BorderRadius="20"
+                            HeightRequest="40"
+                            WidthRequest="40"
+                            Pressed="LeaveRoom_Triggered">
+                        <Button.FontFamily>
+                            <OnPlatform x:TypeArguments="x:String">
+                                <On Platform="iOS" Value="Font Awesome 5 Free" />
+                                <On Platform="Android" Value="fa-regular-400.ttf#Font Awesome 5 Free" />
+                                <On Platform="UWP" Value="Assets/Fonts/fa-regular-400#Font Awesome 5 Free" />
+                            </OnPlatform>
+                        </Button.FontFamily>
+                    </Button>
                     <!-- Room Settings Button-->
                     <Button TextColor="{StaticResource TextColor}" Text="&#xf0ad;"
                             BackgroundColor="{StaticResource DefaultButtonColor}"
@@ -58,21 +73,9 @@
                     <Button TextColor="{StaticResource TextColor}" Text="&#xf086;"
                             BackgroundColor="{StaticResource SecondaryButtonColor}"
                             BorderRadius="20"
-                            HeightRequest="40" WidthRequest="40">
-                        <Button.FontFamily>
-                            <OnPlatform x:TypeArguments="x:String">
-                                <On Platform="iOS" Value="Font Awesome 5 Free" />
-                                <On Platform="Android" Value="fa-regular-400.ttf#Font Awesome 5 Free" />
-                                <On Platform="UWP" Value="Assets/Fonts/fa-regular-400#Font Awesome 5 Free" />
-                            </OnPlatform>
-                        </Button.FontFamily>
-                    </Button>
-                    <!-- Exit Button-->
-                    <Button TextColor="{StaticResource TextColor}" Text="&#xf2f5;"
-                            BackgroundColor="{StaticResource ThirdaryButtonColor}"
-                            BorderRadius="20"
                             HeightRequest="40"
-                            WidthRequest="40">
+                            WidthRequest="40"
+                            Pressed="ChatModeBtn_OnClick">
                         <Button.FontFamily>
                             <OnPlatform x:TypeArguments="x:String">
                                 <On Platform="iOS" Value="Font Awesome 5 Free" />
