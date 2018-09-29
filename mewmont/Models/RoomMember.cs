@@ -27,8 +27,10 @@ namespace mewmont.Models
             set { commMode = value; }
         }
 
-        // Implement when message data type available
-        //public SendMessage()
+        public void SendMessage(Message message)
+        {
+            throw new NotImplementedException();
+        }
 
         public void LeaveRoom()
         {
