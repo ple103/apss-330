@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using mewmont.Data;
 
 [assembly: XamlCompilation (XamlCompilationOptions.Compile)]
 namespace mewmont
@@ -9,12 +10,14 @@ namespace mewmont
 	{
         public static int ScreenHeight { get; set; }
         public static int ScreenWidth { get; set; }
+        public static RoomManager RoomManager { get; private set; }
 
         public App ()
 		{
 			InitializeComponent();
 
-			MainPage = new RoomPage();
+            RoomManager = new RoomManager(new RestService());
+            MainPage = new RoomPage();
 		}
 
 		protected override void OnStart ()

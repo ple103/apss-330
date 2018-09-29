@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using mewmont.Models;
+using mewmont.YouTube;
 
 namespace mewmont
 {
@@ -14,6 +16,16 @@ namespace mewmont
 		{
 			InitializeComponent();
 		}
+
+        Room room;
+
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            room = await App.RoomManager.GetTasksAsync();
+            MediaViewer.Source = YouTubeNavigation.AbsoluteYouTubeURL(room.media);
+        }
 
         private void MessageEntry_Focused(object sender, FocusEventArgs e)
         {

@@ -10,7 +10,6 @@
 
     <StackLayout Orientation="Vertical">
         <WebView x:Name="MediaViewer" 
-                 Source="https://www.youtube.com/embed/wA-qqOP9p6Q" 
                  HeightRequest="{Binding MediaHeight}"
                  VerticalOptions="Start">
         </WebView>
