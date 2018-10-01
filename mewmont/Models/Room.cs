@@ -4,15 +4,6 @@ using System.Text;
 
 namespace mewmont.Models
 {
-    public class RoomDefinitions
-    {
-        IDictionary<int, string> PlaybackStates = new Dictionary<int, string>()
-                                            {
-                                                {0,"Paused"},
-                                                {1, "Playing"}
-                                            };
-    }
-
     public class Room
     {
         public string title { get; set; }

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:mewmont"
+             x:Class="mewmont.RoomSettingsPage"
+             BackgroundColor="{StaticResource PageBackgroundColor}">
+
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry x:Name="MediaUrlEntry"
+                   Placeholder="Paste YouTube video link here"
+                   TextColor="{StaticResource TextColor}"
+                   PlaceholderColor="DimGray"></Entry>
+            <Button x:Name="MediaChangeBtn"
+                    BackgroundColor="{StaticResource DefaultButtonColor}"
+                    TextColor="{StaticResource TextColor}"
+                    Text="Set YouTube video"
+                    Pressed="MediaChangeBtn_OnClick">
+            </Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

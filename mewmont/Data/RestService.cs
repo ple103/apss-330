@@ -4,15 +4,18 @@ using System.Diagnostics;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using Newtonsoft.Json;
 using mewmont.Models;
+using System.Net.WebSockets;
+using System.Threading.Tasks;
 
 namespace mewmont.Data
 {
     public class RestService : IRestService
     {
         HttpClient client;
+        ClientWebSocket webSocketClient;
 
         public Room Room { get; private set; }
 
@@ -22,9 +25,11 @@ namespace mewmont.Data
             client = new HttpClient();
             client.MaxResponseContentBufferSize = 256000;
             #endregion
+
+            webSocketClient = new ClientWebSocket();
         }
 
-        public async Task<Room> RefreshDataAsync()
+        public async Task<Room> GetRoomData()
         {
             Room = new Room();
             #region use_RESTAPI_to_get_data
