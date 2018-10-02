@@ -11,34 +11,46 @@ namespace mewmont.Data
     {
         IRestService restService;
         WebSocketService webSocketService;
+        public Room Room { private set; get; }
 
-
-        public event EventHandler<string> TokenRecieved;
-        public event EventHandler<string> MediaChanged;
+        public event EventHandler MediaChanged;
 
         public RoomManager(IRestService service, WebSocketService wsService)
         {
             restService = service;
             webSocketService = wsService;
-            wsService.StartLoadingData();
             wsService.DataRecieved += new EventHandler<RoomSocket>(WebSocketDataRecieved);
         }
 
-        public Task<Room> GetRoomData()
+        public async Task<bool> StartRoomConnection()
         {
-            return restService.GetRoomData();
+            await GetRoomData();
+            webSocketService.StartLoadingData();
+            return true;
         }
 
-        private void WebSocketDataRecieved(object sender, dynamic response)
+        public async Task<bool> GetRoomData()
         {
-            if (response.message == "allocation")
+            Room = await restService.GetRoomData();
+            return true;
+        }
+
+        private void WebSocketDataRecieved(object sender, RoomSocket response)
+        {
+            switch (response.message)
             {
-                TokenRecieved?.Invoke(this, response.token);
-                webSocketService.token = response.token;
-                webSocketService.roomId = response.room;
-            } else if (response.message == "mediaChange")
-            {
-                MediaChanged?.Invoke(this, response.mediaId);
+                case "allocation":
+                    webSocketService.token = response.token;
+                    webSocketService.roomId = response.room;
+                    GetRoomMedia();
+                    break;
+
+                case "mediaChange":
+                    Room.CurrentMedia = response.media;
+                    MediaChanged?.Invoke(this, new EventArgs());
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -46,6 +58,11 @@ namespace mewmont.Data
         {
             string videoId = YouTubeNavigation.YouTubeIDFromRawUrl(rawUrl);
             webSocketService.ChangeMedia(videoId);
+        }
+
+        public void GetRoomMedia()
+        {
+            webSocketService.GetMedia();
         }
     }
 }

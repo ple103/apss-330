@@ -13,15 +13,12 @@ namespace mewmont
 	public partial class RoomPage : ContentPage
 	{
         RoomViewModel thisViewModel;
-        Room room;
-        private bool firstApperance = true;
 
         public RoomPage()
 		{
 			InitializeComponent();
             thisViewModel = ((RoomViewModel)this.BindingContext);
-            App.RoomManager.TokenRecieved += new EventHandler<string>(RoomTokenReceived);
-            App.RoomManager.MediaChanged += new EventHandler<string>(RoomMediaChanged);
+            App.RoomManager.MediaChanged += new EventHandler(RoomMediaChanged);
         }
 
         protected async override void OnAppearing()
@@ -29,9 +26,8 @@ namespace mewmont
             base.OnAppearing();
             NavigationPage.SetHasNavigationBar(this, false);
 
-            room = await App.RoomManager.GetRoomData();
-            thisViewModel.MediaURL = YouTubeNavigation.AbsoluteYouTubeURL(room.media);
-            firstApperance = false;
+            await App.RoomManager.StartRoomConnection();
+            thisViewModel.IsLoading = false;
         }
 
         private void MessageEntry_Focused(object sender, FocusEventArgs e)
@@ -59,14 +55,9 @@ namespace mewmont
             Navigation.PushAsync(new RoomSettingsPage());
         }
 
-        private void RoomTokenReceived(object sender, string token)
+        private void RoomMediaChanged(object sender, System.EventArgs e)
         {
-            thisViewModel.IsLoading = false;
-        }
-
-        private void RoomMediaChanged(object sender, string mediaId)
-        {
-            thisViewModel.MediaURL = YouTubeNavigation.AbsoluteYouTubeURL(mediaId);
+            thisViewModel.MediaURL = YouTubeNavigation.AbsoluteYouTubeURL(App.RoomManager.Room.CurrentMedia.mediaId);
         }
     }
 }

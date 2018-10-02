@@ -32,8 +32,18 @@ namespace mewmont.Data
 
         public async void ChangeMedia(string videoId)
         {
-            ChangeMedia data = new ChangeMedia();
+            MediaChange data = new MediaChange();
             data.videoId = videoId;
+            data.room = roomId;
+            data.token = token;
+
+            string sendingData = JsonConvert.SerializeObject(data);
+            await SendData(sendingData);
+        }
+
+        public async void GetMedia()
+        {
+            GetMedia data = new GetMedia();
             data.room = roomId;
             data.token = token;
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 
-namespace mewmont.Views
+namespace mewmont
 {
     public partial class HomePage : ContentPage
     {

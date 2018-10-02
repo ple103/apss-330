@@ -11,8 +11,8 @@
             <Color x:Key="SecondaryButtonColor">#bc294e</Color>
             <Color x:Key="ThirdaryButtonColor">#bc9729</Color>
             <Style TargetType="NavigationPage">
-                <Setter Property="BarBackgroundColor" Value="#33302E"/>
-                <Setter Property="BarTextColor" Value="LightCyan"/>
+                <Setter Property="BarBackgroundColor" Value="{StaticResource PanelBackgroundColor}"></Setter>
+                <Setter Property="BarTextColor" Value="{StaticResource TextColor}"></Setter>
             </Style>
         </ResourceDictionary>
     </Application.Resources>

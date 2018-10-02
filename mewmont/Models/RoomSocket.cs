@@ -10,5 +10,6 @@ namespace mewmont.Models
         public string token { get; set; }
         public string mediaId { get; set; }
         public int room { get; set; }
+        public Media media { get; set; }
     }
 }
