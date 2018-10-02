@@ -22,6 +22,9 @@ namespace mewmont.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            App.ScreenHeight = (int)UIScreen.MainScreen.Bounds.Height;
+            App.ScreenWidth = (int)UIScreen.MainScreen.Bounds.Width;
+
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 

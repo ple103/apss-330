@@ -13,7 +13,7 @@ namespace mewmont.Models
         private List<Message> chatlog;
         private RoomMember[] roomMembers;
 
-        public string Name
+        public string Title
         {
             get { return name; }
             set { name = value; }

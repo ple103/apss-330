@@ -1,17 +1,23 @@
-using System;
+﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using mewmont.Data;
 
 [assembly: XamlCompilation (XamlCompilationOptions.Compile)]
 namespace mewmont
 {
 	public partial class App : Application
 	{
-		public App ()
+        public static int ScreenHeight { get; set; }
+        public static int ScreenWidth { get; set; }
+        public static RoomManager RoomManager { get; private set; }
+
+        public App ()
 		{
 			InitializeComponent();
 
-			MainPage = new MainPage();
+            RoomManager = new RoomManager(new RestService(), new WebSocketService());
+            MainPage = new NavigationPage(new RoomPage());
 		}
 
 		protected override void OnStart ()

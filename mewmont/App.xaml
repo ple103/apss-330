@@ -3,6 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="mewmont.App">
 	<Application.Resources>
-    
-	</Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PageBackgroundColor">#1e1c1b</Color>
+            <Color x:Key="PanelBackgroundColor">#33302E</Color>
+            <Color x:Key="TextColor">White</Color>
+            <Color x:Key="DefaultButtonColor">#2961bc</Color>
+            <Color x:Key="SecondaryButtonColor">#bc294e</Color>
+            <Color x:Key="ThirdaryButtonColor">#bc9729</Color>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="#33302E"/>
+                <Setter Property="BarTextColor" Value="LightCyan"/>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
 </Application>
