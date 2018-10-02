@@ -12,6 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\HomePage.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Update="Pages\RoomPage.xaml.cs">
       <DependentUpon>RoomPage.xaml</DependentUpon>
     </Compile>
