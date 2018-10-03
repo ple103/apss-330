@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <Compile Remove="Views\HomePage.cs" />
+    <Compile Remove="Views\MyPage.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Pages\RoomPage.xaml.cs">
