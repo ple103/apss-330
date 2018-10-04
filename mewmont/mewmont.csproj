@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <Compile Remove="Views\HomePage.cs" />
+    <Compile Remove="Views\MyPage.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Pages\RoomPage.xaml.cs">
@@ -27,6 +28,9 @@
     </Compile>
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Remove="Views\MyPage.xaml" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Pages\RoomSettingsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
