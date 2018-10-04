@@ -2,19 +2,19 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:mewmont"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
              x:Class="mewmont.RoomPage"
              BackgroundColor="{StaticResource PageBackgroundColor}">
     <ContentPage.BindingContext>
         <local:RoomViewModel />
     </ContentPage.BindingContext>
     <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-        <StackLayout Orientation="Vertical">
-            <WebView x:Name="MediaViewer" 
+        <StackLayout Orientation="Vertical" x:Name="MainContent">
+            <AbsoluteLayout x:Name="MediaViewer" 
                  HeightRequest="{Binding MediaHeight}"
                  VerticalOptions="Start"
-                 Source="{Binding MediaURL}"
                  IsVisible="{Binding IsLoaded}">
-            </WebView>
+            </AbsoluteLayout>
             <!-- Chat Area -->
             <StackLayout x:Name="ChatArea" 
                      Orientation="Vertical"

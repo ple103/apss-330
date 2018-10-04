@@ -9,7 +9,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mewmont.Android", "mewmont.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mewmont.iOS", "mewmont.iOS\mewmont.iOS.csproj", "{8F9653E4-F64F-47CD-B21C-9A337E7FB5FC}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "mewmont.Shared", "mewmont.Shared\mewmont.Shared.shproj", "{D60F650D-A534-4681-AD50-E07191880F1C}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		mewmont.Shared\mewmont.Shared.projitems*{40c639d8-2be5-4017-b3f4-4c8572d668b6}*SharedItemsImports = 4
+		mewmont.Shared\mewmont.Shared.projitems*{d60f650d-a534-4681-ad50-e07191880f1c}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
 		Ad-Hoc|iPhone = Ad-Hoc|iPhone

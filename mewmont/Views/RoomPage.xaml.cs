@@ -7,18 +7,35 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using mewmont.Models;
 using mewmont.YouTube;
+using XLabs.Forms.Controls;
 
 namespace mewmont
 {
 	public partial class RoomPage : ContentPage
 	{
         RoomViewModel thisViewModel;
+        HybridWebViewV2 MediaViewerVideo;
 
         public RoomPage()
 		{
 			InitializeComponent();
             thisViewModel = ((RoomViewModel)this.BindingContext);
             App.RoomManager.MediaChanged += new EventHandler(RoomMediaChanged);
+
+            createMediaViewerVideo();
+        }
+
+        /// <summary>
+        /// Due to issues with the XLabs library, the HybridWebView control will only load if called programatically in code.
+        /// </summary>
+        private void createMediaViewerVideo()
+        {
+            MediaViewerVideo = new HybridWebViewV2() { VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand };
+            MediaViewerVideo.Source = "https://streamr.australiaeast.cloudapp.azure.com/youtubeview";
+            MediaViewerVideo.SetBinding(HybridWebViewV2.HeightRequestProperty, "MediaHeight");
+            MediaViewerVideo.SetBinding(HybridWebViewV2.IsVisibleProperty, "IsLoaded");
+            MediaViewerVideo.BindingContext = thisViewModel;
+            MediaViewer.Children.Add(MediaViewerVideo);
         }
 
         protected async override void OnAppearing()
@@ -57,7 +74,7 @@ namespace mewmont
 
         private void RoomMediaChanged(object sender, System.EventArgs e)
         {
-            thisViewModel.MediaURL = YouTubeNavigation.AbsoluteYouTubeURL(App.RoomManager.Room.CurrentMedia.mediaId);
+            MediaViewerVideo.InjectJavaScript("changeMedia('" + App.RoomManager.Room.CurrentMedia.mediaId + "');");
         }
     }
 }

@@ -18,27 +18,6 @@ namespace mewmont
             }
         }
 
-        private string mediaURL;
-        public string MediaURL
-        {
-            set
-            {
-                if (mediaURL != value)
-                {
-                    mediaURL = value;
-
-                    if (PropertyChanged != null)
-                    {
-                        PropertyChanged(this, new PropertyChangedEventArgs("MediaURL"));
-                    }
-                }
-            }
-            get
-            {
-                return mediaURL;
-            }
-        }
-
         private bool optionsBtnsVisible = true;
         public bool OptionsBtnsVisible
         {

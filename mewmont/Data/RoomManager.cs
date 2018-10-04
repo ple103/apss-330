@@ -4,6 +4,8 @@ using System.Text;
 using System.Threading.Tasks;
 using mewmont.Models;
 using mewmont.YouTube;
+using YoutubeExplode;
+using YoutubeExplode.Models.MediaStreams;
 
 namespace mewmont.Data
 {
@@ -11,6 +13,7 @@ namespace mewmont.Data
     {
         IRestService restService;
         WebSocketService webSocketService;
+        YoutubeClient youtubeClient;
         public Room Room { private set; get; }
 
         public event EventHandler MediaChanged;
@@ -19,6 +22,7 @@ namespace mewmont.Data
         {
             restService = service;
             webSocketService = wsService;
+            youtubeClient = new YoutubeClient();
             wsService.DataRecieved += new EventHandler<RoomSocket>(WebSocketDataRecieved);
         }
 

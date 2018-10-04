@@ -11,11 +11,10 @@ namespace mewmont
         public static int ScreenHeight { get; set; }
         public static int ScreenWidth { get; set; }
         public static RoomManager RoomManager { get; private set; }
-
         public App ()
 		{
 			InitializeComponent();
-
+            
             RoomManager = new RoomManager(new RestService(), new WebSocketService());
             MainPage = new NavigationPage(new RoomPage());
 		}
