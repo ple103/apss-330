@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="mewmont.Views.CreateStreamPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="mewmont.CreateStreamPage"
+             BackgroundColor="{StaticResource PageBackgroundColor}">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Padding="10, 0" BackgroundColor="Gray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout Padding="10, 0" BackgroundColor="{StaticResource PanelBackgroundColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                  <Label Text="Create a Stream &#x0A;"
                         HorizontalOptions="Center" 
-                        TextColor="White"
-                        FontAttributes="Bold">
+                        TextColor="{StaticResource TextColor}"
+                        FontAttributes="Bold"
+                        FontSize="Large">
                 </Label>
+                <Label Text="Room Title"
+                       TextColor="{StaticResource TextColor}"/>
+                <Entry x:Name="RoomTitleEntry"
+                       PlaceholderColor="{StaticResource TextColor}"
+                       TextColor="{StaticResource TextColor}"/>
                 <Label Text="Video URL (Currently Youtube videos are accepted):"
-                       TextColor="White"/>
-                <Entry PlaceholderColor="White"/>
-                <Label Text="Video Title"
-                       TextColor="White"/>
-                <Entry PlaceholderColor="White"/>
+                       TextColor="{StaticResource TextColor}"/>
+                <Entry x:Name="MediaIdEntry"
+                       PlaceholderColor="White"
+                       TextColor="{StaticResource TextColor}"/>
                 <Label Text="Public or Private Stream ?"
-                       TextColor="White"/>
+                       TextColor="{StaticResource TextColor}"/>
                 <Picker x:Name="picker" Title="Select type">
                   <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
@@ -25,9 +31,9 @@
                   </Picker.ItemsSource>
                 </Picker>
                 <Label Text="{Binding Source={x:Reference picker}, Path=SelectedItem}" />
-                <Label Text="Have Face Cam Enabled ?"
-                       TextColor="White"/>
-                <Picker x:Name="picker1" Title="Select">
+                <Label Text="Enable video chat ?"
+                       TextColor="{StaticResource TextColor}"/>
+                <Picker x:Name="picker1" Title="Select" TextColor="{StaticResource TextColor}">
                   <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                       <x:String>Yes</x:String>
@@ -36,9 +42,9 @@
                   </Picker.ItemsSource>
                 </Picker>
                 <Label Text="{Binding Source={x:Reference picker1}, Path=SelectedItem}" />
-                <Label Text="Comments Enabled ?"
-                       TextColor="White"/>
-                <Picker x:Name="picker2" Title="Select">
+                <Label Text="Enable comments ?"
+                       TextColor="{StaticResource TextColor}"/>
+                <Picker x:Name="picker2" Title="Select" TextColor="{StaticResource TextColor}">
                   <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                       <x:String>Yes</x:String>
@@ -48,7 +54,7 @@
                 </Picker>
                 <Label Text="{Binding Source={x:Reference picker2}, Path=SelectedItem}" />
                 <Label Text="By clicking start, you hearby declare that you are responsible for the content you share to other users and this platform. If any prohibited content is showed and legal action is taken then you will be responsible according to your country's laws. You also hearby agree that you are responsible for any third-party ads are shown in the stream (from the video) and Streamr will not be held responsible, should there be any legal issues and action takes place."
-                       TextColor="White"/>
+                       TextColor="{StaticResource TextColor}"/>
                 <Grid ColumnSpacing="20">
                   <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -64,6 +70,8 @@
                     Grid.Column="0"
                     HorizontalOptions="Center"/>
                  <Button
+                    x:Name="StartBtn"
+                    Pressed="StartBtn_Pressed"
                     Text="Start"
                     FontSize="Small"
                     BackgroundColor="Silver"

@@ -100,7 +100,6 @@
     <Folder Include="Resources\drawable-xhdpi\" />
     <Folder Include="Resources\drawable-xxhdpi\" />
     <Folder Include="Resources\drawable-xxxhdpi\" />
-    <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\mewmont\mewmont.csproj">
@@ -110,6 +109,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\YoutubeView.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\streamr_loading.jpg" />
   </ItemGroup>
   <Import Project="..\mewmont.Shared\mewmont.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

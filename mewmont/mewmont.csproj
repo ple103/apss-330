@@ -26,6 +26,9 @@
     <Compile Update="Pages\RoomSettingsPage.xaml.cs">
       <DependentUpon>RoomSettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\JoinPrivateStreamPage.xaml.cs">
+      <DependentUpon>JoinPrivateStreamPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +36,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Pages\RoomSettingsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\JoinStreamPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

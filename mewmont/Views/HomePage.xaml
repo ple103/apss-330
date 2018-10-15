@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="mewmont.HomePage">
     <ContentPage.Content>
-        <StackLayout Padding="10, 0" BackgroundColor="Gray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout Padding="10, 0" BackgroundColor="{StaticResource PanelBackgroundColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <!-- Place new controls here -->
             <Label HorizontalOptions="Center" 
                    TextColor="White"
@@ -42,22 +42,26 @@
                      Grid.Row="0"
                      Grid.Column="1" />
                    <Button
+                    Pressed="CreateStreamBtn_Pressed"
                     Text="Create Stream"
-                    BackgroundColor="Silver"
+                    BackgroundColor="{StaticResource DefaultButtonColor}"
                     Grid.Row="1"
                     Grid.Column="0"
                     WidthRequest="80"
                     HeightRequest="1"
-                    HorizontalOptions="Center"/>
+                    HorizontalOptions="Center"
+                    TextColor="{StaticResource TextColor}"/>
                  <Button
+                    Pressed="JoinStreamBtn_Pressed"
                     Text="Join Stream"
                     FontSize="Small"
-                    BackgroundColor="Silver"
+                    BackgroundColor="{StaticResource SecondaryButtonColor}"
                     Grid.Row="1"
                     Grid.Column="1"
                     WidthRequest="80"
                     HeightRequest="1"
-                    HorizontalOptions="Center"/>
+                    HorizontalOptions="Center"
+                    TextColor="{StaticResource TextColor}"/>
                  <BoxView  
                     VerticalOptions="Fill"
                     HorizontalOptions="CenterAndExpand"
@@ -69,9 +73,15 @@
                     Color="Black"/>             
             </Grid>
             <BoxView BackgroundColor="Black" HeightRequest="1"  HorizontalOptions="FillAndExpand"/>
-            <Button Text="Streaming Settings"/>
-            <Button Text="General Settings" />
-            <Button Text="Help Guide" />
+            <Button Text="Streaming Settings"
+                    TextColor="{StaticResource TextColor}"
+                    BackgroundColor="{StaticResource DefaultButtonColor}"/>
+            <Button Text="General Settings" 
+                    TextColor="{StaticResource TextColor}"
+                    BackgroundColor="{StaticResource DefaultButtonColor}"/>
+            <Button Text="Help Guide" 
+                    TextColor="{StaticResource TextColor}"
+                    BackgroundColor="{StaticResource DefaultButtonColor}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

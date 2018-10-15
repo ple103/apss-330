@@ -6,7 +6,11 @@ namespace mewmont.Data
 {
     public interface IRestService
     {
-        Task<Room> GetRoomData();
+        Task<Room> GetRoomData(int id);
+
+        Task<Room> PutRoomData(Room creatingRoom);
+
+        Task<List<Room>> GetRoomsData();
 
         //Task SaveTodoItemAsync(TodoItem item);
 

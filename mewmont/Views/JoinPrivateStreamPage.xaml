@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:mewmont"
+             x:Class="mewmont.JoinPrivateStreamPage">
+    <ContentPage.Content>
+        <StackLayout Padding="10, 0" BackgroundColor="Gray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Label Text="&#x0A;Join a current Stream &#x0A;"
+                   HorizontalOptions="Center" 
+                   TextColor="White"
+                   FontAttributes="Bold"/>
+            <Label Text="&#x0A; &#x0A; &#x0A; &#x0A; &#x0A; &#x0A; &#x0A; &#x0A; &#x0A;Stream link that has been provided to you:"
+                   HorizontalOptions="Center"
+                       TextColor="White"/>
+            <Entry PlaceholderColor="White"/>
+            
+            <Label Text="&#x0A; &#x0A; &#x0A; &#x0A; &#x0A;By clicking start, you hearby declare that you are responsible for the content you share to other users and this platform. If any prohibited content is showed and legal action is taken then you will be responsible according to your country's laws. You also hearby agree that you are responsible for any third-party ads are shown in the stream (from the video) and Streamr will not be held responsible, should there be any legal issues and action takes place."
+                   TextColor="White"/>
+            <Grid ColumnSpacing="20">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                  </Grid.RowDefinitions>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                  </Grid.ColumnDefinitions>
+                  <Button
+                    Text="Cancel"
+                    BackgroundColor="Silver"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    HorizontalOptions="Center"/>
+                 <Button
+                    Text="Start"
+                    FontSize="Small"
+                    BackgroundColor="Silver"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    HorizontalOptions="Center"/>
+              </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

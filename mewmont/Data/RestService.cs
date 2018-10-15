@@ -18,6 +18,7 @@ namespace mewmont.Data
         ClientWebSocket webSocketClient;
 
         public Room Room { get; private set; }
+        public List<Room> Rooms { get; private set; }
 
         public RestService()
         {
@@ -29,11 +30,40 @@ namespace mewmont.Data
             webSocketClient = new ClientWebSocket();
         }
 
-        public async Task<Room> GetRoomData()
+        public async Task<Room> PutRoomData(Room creatingRoom)
+        {
+            var uri = new Uri(string.Format(Constants.StreamrAPIUrl + "room", string.Empty));
+            string creatingRoomJson = JsonConvert.SerializeObject(creatingRoom);
+
+            var sendingContent = new StringContent(creatingRoomJson, Encoding.UTF8, "application/json");
+            try
+            {
+                var response = await client.PutAsync(uri, sendingContent);
+                if (response.IsSuccessStatusCode)
+                {
+                    var recievingContent = await response.Content.ReadAsStringAsync();
+                    Room = JsonConvert.DeserializeObject<Room>(recievingContent);
+                    Debug.WriteLine(@"              SUCCESS fetching items");
+
+                }
+                else
+                {
+                    Debug.WriteLine(@"               ERROR while fetching items: {0}", response.StatusCode);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"              ERROR Exception Caught while fetching items: {0}", ex.Message);
+            }
+
+            return Room;
+        }
+
+        public async Task<Room> GetRoomData(int id)
         {
             Room = new Room();
             #region use_RESTAPI_to_get_data
-            var uri = new Uri(string.Format("http://streamr.australiaeast.cloudapp.azure.com/room/1", string.Empty));
+            var uri = new Uri(string.Format(Constants.StreamrAPIUrl + "room/" + id, string.Empty));
 
             try
             {
@@ -56,6 +86,35 @@ namespace mewmont.Data
             }
             #endregion
             return Room;
+        }
+
+        public async Task<List<Room>> GetRoomsData()
+        {
+            Rooms = new List<Room>();
+            #region use_RESTAPI_to_get_data
+            var uri = new Uri(string.Format(Constants.StreamrAPIUrl + "rooms/", string.Empty));
+
+            try
+            {
+                var response = await client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    Rooms = JsonConvert.DeserializeObject<List<Room>>(content);
+                    Debug.WriteLine(@"              SUCCESS fetching items");
+
+                }
+                else
+                {
+                    Debug.WriteLine(@"               ERROR while fetching items: {0}", response.StatusCode);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"              ERROR Exception Caught while fetching items: {0}", ex.Message);
+            }
+            #endregion
+            return Rooms;
         }
     }
 }

@@ -15,6 +15,7 @@ namespace mewmont.Data
         WebSocketService webSocketService;
         YoutubeClient youtubeClient;
         public Room Room { private set; get; }
+        public List<Room> Rooms { private set; get; }
 
         public event EventHandler MediaChanged;
 
@@ -26,17 +27,31 @@ namespace mewmont.Data
             wsService.DataRecieved += new EventHandler<RoomSocket>(WebSocketDataRecieved);
         }
 
-        public async Task<bool> StartRoomConnection()
+        public async Task CreateRoom(string title, string rawMediaUrl)
         {
-            await GetRoomData();
-            webSocketService.StartLoadingData();
+            Room sendingRoom = new Room();
+            sendingRoom.Title = title;
+            sendingRoom.CurrentMedia = new Media(YouTubeNavigation.YouTubeIDFromRawUrl(rawMediaUrl));
+
+            Room = await restService.PutRoomData(sendingRoom);
+        }
+
+        public async void StartRoomConnection(int id)
+        {
+            await GetRoomData(id);
+            webSocketService.StartLoadingData(id);
+        }
+
+        public async Task<bool> GetRoomData(int id)
+        {
+            Room = await restService.GetRoomData(id);
             return true;
         }
 
-        public async Task<bool> GetRoomData()
+        public async Task<List<Room>> GetRoomsData()
         {
-            Room = await restService.GetRoomData();
-            return true;
+            Rooms = await restService.GetRoomsData();
+            return Rooms;
         }
 
         private void WebSocketDataRecieved(object sender, RoomSocket response)
@@ -62,6 +77,11 @@ namespace mewmont.Data
         {
             string videoId = YouTubeNavigation.YouTubeIDFromRawUrl(rawUrl);
             webSocketService.ChangeMedia(videoId);
+        }
+
+        public void SetRoomPlaybackState(int playBackState)
+        {
+            webSocketService.PlaybackStateChange(playBackState);
         }
 
         public void GetRoomMedia()

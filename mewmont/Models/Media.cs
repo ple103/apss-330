@@ -13,9 +13,10 @@ namespace mewmont.Models
         private DateTime currentPosition;
         // This may change to a video object (once we create it) instead of it being a Uri.
         public string mediaId { get; set; }
+        public string thumbnailUrl { get; set; }
         private DateTime totalDuration;
         private string title;
-        private PlaybackState playbackState;
+        public int playbackState { get; set; }
 
         public bool Play()
         {
@@ -32,6 +33,4 @@ namespace mewmont.Models
             throw new NotImplementedException();
         }
     }
-
-    enum PlaybackState { PLAYING, PAUSED, STOPPED };
 }

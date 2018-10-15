@@ -41,6 +41,17 @@ namespace mewmont.Data
             await SendData(sendingData);
         }
 
+        public async void PlaybackStateChange(int state)
+        {
+            PlaybackStateChange data = new PlaybackStateChange();
+            data.playbackState = state;
+            data.room = roomId;
+            data.token = token;
+
+            string sendingData = JsonConvert.SerializeObject(data);
+            await SendData(sendingData);
+        }
+
         public async void GetMedia()
         {
             GetMedia data = new GetMedia();
@@ -52,12 +63,12 @@ namespace mewmont.Data
         }
 
 
-        public async void StartLoadingData()
+        public async void StartLoadingData(int roomId)
         {
             ws = new ClientWebSocket();
-            await ws.ConnectAsync(new Uri("ws://streamr.australiaeast.cloudapp.azure.com:1337/"), CancellationToken.None);
+            await ws.ConnectAsync(new Uri(Constants.StreamrWSUrl), CancellationToken.None);
 
-            var roomConnectData = "{\"room\":\"1\", \"msg\":\"connect\"}";
+            var roomConnectData = "{\"room\":\"" + roomId + "\", \"msg\":\"connect\"}";
             await SendData(roomConnectData);
 
             ArraySegment<Byte> readbuffer = new ArraySegment<byte>(new Byte[8192]);
@@ -96,12 +107,6 @@ namespace mewmont.Data
             }
         }
 
-        /// <summary>
-        /// Parses plain txt update to CryptoCurrencyUpdate
-        /// sample input: 42["m","0~Bitfinex~BTC~USD~1~159021061~1515488499~0.119~15091.30724464~1795.86556211216~1f"]
-        /// </summary>
-        /// <param name="str"></param>
-        /// <returns>Return null if parsing was not possible</returns>
         private RoomSocket Parse(String str)
         {
             return JsonConvert.DeserializeObject<RoomSocket>(str);

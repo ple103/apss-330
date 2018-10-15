@@ -18,6 +18,14 @@ namespace mewmont
             }
         }
 
+        public double MediaWidth
+        {
+            get
+            {
+                return App.ScreenWidth;
+            }
+        }
+
         private bool optionsBtnsVisible = true;
         public bool OptionsBtnsVisible
         {
@@ -36,6 +44,27 @@ namespace mewmont
             get
             {
                 return optionsBtnsVisible;
+            }
+        }
+
+        private string placeholderImage = "streamr_loading.jpg";
+        public string PlaceholderImage
+        {
+            set
+            {
+                if (placeholderImage != value)
+                {
+                    placeholderImage = value;
+
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("PlaceholderImage"));
+                    }
+                }
+            }
+            get
+            {
+                return placeholderImage;
             }
         }
 
@@ -58,6 +87,27 @@ namespace mewmont
             get
             {
                 return isLoading;
+            }
+        }
+
+        private bool videoPlaceholderVisible = true;
+        public bool VideoPlaceholderVisible
+        {
+            set
+            {
+                if (videoPlaceholderVisible != value)
+                {
+                    videoPlaceholderVisible = value;
+
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("VideoPlaceholderVisible"));
+                    }
+                }
+            }
+            get
+            {
+                return videoPlaceholderVisible;
             }
         }
 

@@ -12,8 +12,34 @@
         <StackLayout Orientation="Vertical" x:Name="MainContent">
             <AbsoluteLayout x:Name="MediaViewer" 
                  HeightRequest="{Binding MediaHeight}"
+                 WidthRequest="{Binding MediaWidth}"
                  VerticalOptions="Start"
                  IsVisible="{Binding IsLoaded}">
+                <Image x:Name="MediaViewerPlaceholder"
+                       Source="{Binding PlaceholderImage}"
+                       Aspect="AspectFill"
+                       HeightRequest="{Binding MediaHeight}"
+                       WidthRequest="{Binding MediaWidth}"
+                       IsVisible="{Binding VideoPlaceholderVisible}">
+                </Image>
+                <StackLayout Orientation="Horizontal" 
+                             x:Name="MediaViewerUI"
+                             WidthRequest="{Binding MediaWidth}"
+                             HeightRequest="{Binding MediaHeight}">
+                    <!-- Play/Pause Button -->
+                    <Button TextColor="{StaticResource TextColor}" Text="PLAY"
+                            BackgroundColor="{StaticResource DefaultButtonColor}"
+                            BorderRadius="20"
+                            HeightRequest="40" 
+                            WidthRequest="40"
+                            VerticalOptions="End"
+                            Pressed="PlayPause_OnClick">
+                    </Button>
+                    <Slider HorizontalOptions="FillAndExpand"
+                            VerticalOptions="End"
+                            x:Name="timeSlider">
+                    </Slider>
+                </StackLayout>
             </AbsoluteLayout>
             <!-- Chat Area -->
             <StackLayout x:Name="ChatArea" 

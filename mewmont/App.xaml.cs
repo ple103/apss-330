@@ -16,7 +16,7 @@ namespace mewmont
 			InitializeComponent();
             
             RoomManager = new RoomManager(new RestService(), new WebSocketService());
-            MainPage = new NavigationPage(new RoomPage());
+            MainPage = new NavigationPage(new HomePage());
 		}
 
 		protected override void OnStart ()

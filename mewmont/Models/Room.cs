@@ -6,12 +6,19 @@ namespace mewmont.Models
 {
     public class Room
     {
+        private int id;
         private string name;
         private Media currentMedia;
         private Permission defaultPermissions;
         private string passkey;
         private List<Message> chatlog;
         private RoomMember[] roomMembers;
+
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
 
         public string Title
         {

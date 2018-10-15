@@ -12,14 +12,14 @@ namespace mewmont
             InitializeComponent();
         }
 
-        void Handle_Clicked(object sender, System.EventArgs e)
+        void CreateStreamBtn_Pressed(object sender, System.EventArgs e)
         {
-            Navigation.PushAsync(new mewmont.Views.CreateStreamPage());
+            Navigation.PushAsync(new mewmont.CreateStreamPage());
         }
 
-        void Handle_Clicked_1(object sender, System.EventArgs e)
+        void JoinStreamBtn_Pressed(object sender, System.EventArgs e)
         {
-            Navigation.PushAsync(new mewmont.Views.JoinStreamPage());
+            Navigation.PushAsync(new mewmont.JoinStreamPage());
         }
     }
 }
