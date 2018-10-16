@@ -84,12 +84,29 @@ namespace mewmont
             var option = await DisplayActionSheet("Choose a chat mode", "Cancel", null, "Text-only", "Voice", "Camera & Voice");
         }
 
-        async void LeaveRoom_Triggered(object sender, EventArgs e)
+        void LeaveRoom_Triggered(object sender, EventArgs e)
         {
-            var answer = await DisplayAlert("Are you sure?", "Do you want to leave this room?", "Yes", "No");
+            LeaveRoom();
         }
 
-        private void SettingsBtn_OnClick(object sender, EventArgs e)
+        protected override bool OnBackButtonPressed()
+        {
+            LeaveRoom();
+            return false;
+        }
+
+        async void LeaveRoom()
+        {
+            var answer = await DisplayAlert("Are you sure?", "Do you want to leave this room?", "Yes", "No");
+            // If the user has selected to leave the room
+            if (answer)
+            {
+                App.RoomManager.CloseRoomConnection();
+                await Navigation.PopAsync();
+            }
+        }
+
+            private void SettingsBtn_OnClick(object sender, EventArgs e)
         {
             Navigation.PushAsync(new RoomSettingsPage());
         }

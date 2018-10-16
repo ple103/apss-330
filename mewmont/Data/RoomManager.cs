@@ -6,6 +6,7 @@ using mewmont.Models;
 using mewmont.YouTube;
 using YoutubeExplode;
 using YoutubeExplode.Models.MediaStreams;
+using Xamarin.Forms;
 
 namespace mewmont.Data
 {
@@ -40,6 +41,11 @@ namespace mewmont.Data
         {
             await GetRoomData(id);
             webSocketService.StartLoadingData(id);
+        }
+
+        public void CloseRoomConnection()
+        {
+            webSocketService.StopLoadingData();
         }
 
         public async Task<bool> GetRoomData(int id)
