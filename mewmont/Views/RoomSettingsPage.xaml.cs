@@ -20,6 +20,7 @@ namespace mewmont
         private void MediaChangeBtn_OnClick(object sender, EventArgs e)
         {
             App.RoomManager.SetRoomMedia(MediaUrlEntry.Text);
+            Navigation.PopAsync();
         }
     }
 }
