@@ -20,9 +20,9 @@ namespace mewmont.Data
 
         public event EventHandler MediaChanged;
 
-        public RoomManager(IRestService service, WebSocketService wsService)
+        public RoomManager(WebSocketService wsService)
         {
-            restService = service;
+            restService = App.restService;
             webSocketService = wsService;
             youtubeClient = new YoutubeClient();
             wsService.DataRecieved += new EventHandler<RoomSocket>(WebSocketDataRecieved);

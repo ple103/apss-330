@@ -6,8 +6,8 @@ namespace mewmont.Models
     public class User
     {
         private string username;
-        private string emailAddress;
-        private Image profilePicture;
+        private string token;
+        private int id;
 
         public string Username
         {
@@ -15,16 +15,16 @@ namespace mewmont.Models
             set { username = value; }
         }
 
-        public string EmailAddress
+        public string Token
         {
-            get { return emailAddress; }
-            set { emailAddress = value; }
+            get { return token; }
+            set { token = value; }
         }
 
-        public Image ProfilePicture
+        public int Id
         {
-            get { return profilePicture; }
-            set { profilePicture = value; }
+            get { return id; }
+            set { id = value; }
         }
 
         public async void Logout()

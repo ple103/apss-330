@@ -1,0 +1,39 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace mewmont
+{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class LoginPage : ContentPage
+    {
+        public LoginPage()
+        {
+            InitializeComponent();
+
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            NavigationPage.SetHasNavigationBar(this, false);
+        }
+
+        private async void LoginBtn_Pressed(object sender, EventArgs e)
+        {
+            await App.UserManager.Login(UsernameEntry.Text, PasswordEntry.Text);
+            if (App.UserManager.User.Token == null)
+            {
+                await DisplayAlert("Error", "Failed to log in. Please check your login detals", "OK");
+            } else
+            {
+                await Navigation.PushAsync(new HomePage());
+            }
+        }
+    }
+}

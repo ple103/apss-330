@@ -210,6 +210,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidJavaLibrary Include="VidyoClient-AndroidSDK\lib\android\vidyoclient.jar" />
+    <AndroidResource Include="Resources\drawable\streamr_bg.png" />
+    <AndroidResource Include="Resources\drawable\streamr_logo.png" />
+    <AndroidResource Include="Resources\drawable\vid_btm_pv.png" />
     <Content Include="VidyoClient-AndroidSDK\readme_vidyoclient_android.html" />
     <Content Include="VidyoClient-AndroidSDK\samples\VidyoConnector\android\app\src\main\AndroidManifest.xml" />
     <Content Include="VidyoClient-AndroidSDK\samples\VidyoConnector\android\app\src\main\java\com\vidyo\vidyoconnector\IVideoFrameListener.java" />

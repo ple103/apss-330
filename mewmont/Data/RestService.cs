@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using mewmont.Models;
 using System.Net.WebSockets;
 using System.Threading.Tasks;
+using mewmont.Models.SocketSenders;
 
 namespace mewmont.Data
 {
@@ -18,6 +19,7 @@ namespace mewmont.Data
         ClientWebSocket webSocketClient;
 
         public Room Room { get; private set; }
+        public User user { get; private set; }
         public List<Room> Rooms { get; private set; }
 
         public RestService()
@@ -115,6 +117,38 @@ namespace mewmont.Data
             }
             #endregion
             return Rooms;
+        }
+
+        public async Task<User> Login(Login loginData)
+        {
+            user = new User();
+            #region use_RESTAPI_to_get_data
+            var uri = new Uri(string.Format(Constants.StreamrAPIUrl + "account", string.Empty));
+
+            string loginDataJson = JsonConvert.SerializeObject(loginData);
+
+            var sendingContent = new StringContent(loginDataJson, Encoding.UTF8, "application/json");
+            try
+            {
+                var response = await client.PostAsync(uri, sendingContent);
+                if (response.IsSuccessStatusCode)
+                {
+                    var recievingContent = await response.Content.ReadAsStringAsync();
+                    user = JsonConvert.DeserializeObject<User>(recievingContent);
+                    Debug.WriteLine(@"              SUCCESS fetching items");
+
+                }
+                else
+                {
+                    Debug.WriteLine(@"               ERROR while fetching items: {0}", response.StatusCode);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"              ERROR Exception Caught while fetching items: {0}", ex.Message);
+            }
+            #endregion
+            return user;
         }
     }
 }
