@@ -27,6 +27,7 @@ namespace mewmont
         private async void LoginBtn_Pressed(object sender, EventArgs e)
         {
             await App.UserManager.Login(UsernameEntry.Text, PasswordEntry.Text);
+            PasswordEntry.Text = "";
             if (App.UserManager.User.Token == null)
             {
                 await DisplayAlert("Error", "Failed to log in. Please check your login details", "OK");

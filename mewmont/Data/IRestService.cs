@@ -15,6 +15,8 @@ namespace mewmont.Data
 
         Task<User> Login(Login loginData);
 
-        Task<RegistrationResponse> Register(Login registerData);
+        Task<SuccessResponse> Register(Login registerData);
+
+        Task<SuccessResponse> Logout(Logout logoutData);
     }
 }

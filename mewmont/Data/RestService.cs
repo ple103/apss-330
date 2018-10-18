@@ -151,11 +151,43 @@ namespace mewmont.Data
             return user;
         }
 
-        public async Task<RegistrationResponse> Register(Login registerData)
+        public async Task<SuccessResponse> Logout(Logout logoutData)
+        {
+            SuccessResponse SuccessResponse = null;
+            #region use_RESTAPI_to_get_data
+            var uri = new Uri(string.Format(Constants.StreamrAPIUrl + "account/logout", string.Empty));
+
+            string logoutDataJson = JsonConvert.SerializeObject(logoutData);
+
+            var sendingContent = new StringContent(logoutDataJson, Encoding.UTF8, "application/json");
+            try
+            {
+                var response = await client.PostAsync(uri, sendingContent);
+                if (response.IsSuccessStatusCode)
+                {
+                    var recievingContent = await response.Content.ReadAsStringAsync();
+                    SuccessResponse = JsonConvert.DeserializeObject<SuccessResponse>(recievingContent);
+                    Debug.WriteLine(@"              SUCCESS fetching items");
+
+                }
+                else
+                {
+                    Debug.WriteLine(@"               ERROR while fetching items: {0}", response.StatusCode);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"              ERROR Exception Caught while fetching items: {0}", ex.Message);
+            }
+            #endregion
+            return SuccessResponse;
+        }
+
+        public async Task<SuccessResponse> Register(Login registerData)
         {
             var uri = new Uri(string.Format(Constants.StreamrAPIUrl + "account", string.Empty));
             string registerJson = JsonConvert.SerializeObject(registerData);
-            RegistrationResponse RegistrationResponse = null;
+            SuccessResponse RegistrationResponse = null;
             var sendingContent = new StringContent(registerJson, Encoding.UTF8, "application/json");
             try
             {
@@ -163,7 +195,7 @@ namespace mewmont.Data
                 if (response.IsSuccessStatusCode)
                 {
                     var recievingContent = await response.Content.ReadAsStringAsync();
-                    RegistrationResponse = JsonConvert.DeserializeObject<RegistrationResponse>(recievingContent);
+                    RegistrationResponse = JsonConvert.DeserializeObject<SuccessResponse>(recievingContent);
                     Debug.WriteLine(@"              SUCCESS fetching items");
 
                 }

@@ -20,7 +20,8 @@ namespace mewmont
 
         private async void RegisterBtn_Pressed(object sender, EventArgs e)
         {
-            RegistrationResponse response = await App.UserManager.Register(UsernameEntry.Text, PasswordEntry.Text);
+            SuccessResponse response = await App.UserManager.Register(UsernameEntry.Text, PasswordEntry.Text);
+            PasswordEntry.Text = "";
             if (response == null || !response.success)
             {
                 await DisplayAlert("Error", "Please enter different details and try again.", "OK");

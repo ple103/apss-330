@@ -3,14 +3,10 @@
     <ContentPage.Content>
         <StackLayout Padding="10, 0" BackgroundColor="{StaticResource PanelBackgroundColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <!-- Place new controls here -->
-            <Label HorizontalOptions="Center" 
-                   TextColor="White"
-                   FontAttributes="Bold"
-                   FontSize="Large">
-                <Label.Text>
-                    Welcome to Streamr
-                </Label.Text>
-            </Label>
+            <Image HorizontalOptions="Center" 
+                   Source="streamr_logo.png"
+                   Margin="40, 10, 40, 10">
+            </Image>
             
             <Label Text="Welcome User &#x0A;"
                    HorizontalOptions="Center" 

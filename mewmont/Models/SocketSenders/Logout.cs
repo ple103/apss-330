@@ -4,8 +4,9 @@ using System.Text;
 
 namespace mewmont.Models.SocketSenders
 {
-    public class RegistrationResponse
+    public class Logout
     {
-        public bool success { get; set; }
+        public int id { get; set; }
+        public string token { get; set; }
     }
 }
