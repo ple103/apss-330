@@ -29,11 +29,16 @@ namespace mewmont
             await App.UserManager.Login(UsernameEntry.Text, PasswordEntry.Text);
             if (App.UserManager.User.Token == null)
             {
-                await DisplayAlert("Error", "Failed to log in. Please check your login detals", "OK");
+                await DisplayAlert("Error", "Failed to log in. Please check your login details", "OK");
             } else
             {
                 await Navigation.PushAsync(new HomePage());
             }
+        }
+
+        private async void RegisterBtn_Pressed(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new RegisterPage());
         }
     }
 }

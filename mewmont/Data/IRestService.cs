@@ -15,10 +15,6 @@ namespace mewmont.Data
 
         Task<User> Login(Login loginData);
 
-        //Task SaveTodoItemAsync(TodoItem item);
-
-        //Task UpdateTodoItemAsync(TodoItem item);
-
-        //Task DeleteTodoItemAsync(string id);
+        Task<RegistrationResponse> Register(Login registerData);
     }
 }

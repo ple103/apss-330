@@ -25,5 +25,14 @@ namespace mewmont.Data
 
             User = await restService.Login(sendingLoginData);
         }
+
+        public async Task<RegistrationResponse> Register(string username, string password)
+        {
+            Login sendingRegistrationData = new Login();
+            sendingRegistrationData.username = username;
+            sendingRegistrationData.password = password;
+
+            return await restService.Register(sendingRegistrationData);
+        }
     }
 }

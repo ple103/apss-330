@@ -150,5 +150,34 @@ namespace mewmont.Data
             #endregion
             return user;
         }
+
+        public async Task<RegistrationResponse> Register(Login registerData)
+        {
+            var uri = new Uri(string.Format(Constants.StreamrAPIUrl + "account", string.Empty));
+            string registerJson = JsonConvert.SerializeObject(registerData);
+            RegistrationResponse RegistrationResponse = null;
+            var sendingContent = new StringContent(registerJson, Encoding.UTF8, "application/json");
+            try
+            {
+                var response = await client.PutAsync(uri, sendingContent);
+                if (response.IsSuccessStatusCode)
+                {
+                    var recievingContent = await response.Content.ReadAsStringAsync();
+                    RegistrationResponse = JsonConvert.DeserializeObject<RegistrationResponse>(recievingContent);
+                    Debug.WriteLine(@"              SUCCESS fetching items");
+
+                }
+                else
+                {
+                    Debug.WriteLine(@"               ERROR while fetching items: {0}", response.StatusCode);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"              ERROR Exception Caught while fetching items: {0}", ex.Message);
+            }
+
+            return RegistrationResponse;
+        }
     }
 }

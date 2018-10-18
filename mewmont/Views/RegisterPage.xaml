@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="mewmont.LoginPage"
-             BackgroundImage="streamr_bg.png">
+             x:Class="mewmont.RegisterPage"
+             BackgroundImage="login_bg.png">
     <ContentPage.Content>
         <RelativeLayout>
             <Image Source="streamr_logo.png"
@@ -35,10 +35,10 @@
                         Property=Height,Factor=.5,Constant=0}"
                    RelativeLayout.WidthConstraint="{ConstraintExpression
                         Type=RelativeToParent,Property=Width,Factor=.8,Constant=0}"/>
-            <Button Text="Login"
-                    Pressed="LoginBtn_Pressed"
+            <Button Text="Register"
+                    Pressed="RegisterBtn_Pressed"
                    TextColor="White"
-                    BackgroundColor="{StaticResource DefaultButtonColor}"
+                    BackgroundColor="{StaticResource ThirdaryButtonColor}"
                    RelativeLayout.XConstraint =
                         "{ConstraintExpression Type=RelativeToParent,
                              Property=Width,
@@ -60,7 +60,6 @@
                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
                         Property=Height,Factor=.69,Constant=0}"/>
             <Button Text="Register"
-                    Pressed="RegisterBtn_Pressed"
                    TextColor="White"
                     BackgroundColor="Transparent"
                    RelativeLayout.XConstraint =
