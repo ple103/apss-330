@@ -96,10 +96,11 @@ namespace mewmont.Data
 
         public async void StopLoadingData()
         {
+            var disconnectData = "{\"token\":\"" + token + "\", \"msg\":\"disconnect\"}";
             try
             {
                 if (ws.State != WebSocketState.Closed)
-                    await ws.CloseAsync(WebSocketCloseStatus.Empty, String.Empty, CancellationToken.None);
+                    await ws.CloseAsync(WebSocketCloseStatus.NormalClosure, disconnectData, CancellationToken.None);
             }
             finally
             {
