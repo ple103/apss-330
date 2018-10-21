@@ -49,15 +49,20 @@
                      IsVisible="{Binding IsLoaded}">
                 <!-- Chat Box Section -->
                 <ScrollView VerticalOptions="FillAndExpand">
-                    <StackLayout x:Name="ChatBoxContent"
-                             Orientation="Vertical"
+                    <ListView x:Name="ChatBoxContent"
                              VerticalOptions="EndAndExpand">
-                        <!-- Messages -->
-                        <StackLayout Orientation="Vertical">
-                            <Label TextColor="LightGreen">JCurtis</Label>
-                            <Label TextColor="{StaticResource TextColor}">I am a message. A very long message, an even longer message. This is one big message.</Label>
-                        </StackLayout>
-                    </StackLayout>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <!-- Messages -->
+                                    <StackLayout Orientation="Vertical">
+                                        <Label TextColor="LightGreen" Text="{Binding Author}"/>
+                                        <Label TextColor="{StaticResource TextColor}" Text="{Binding MessageBody}"/>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </ScrollView>
                 <!-- Message Box Section -->
                 <StackLayout x:Name="MessageBox"
@@ -119,10 +124,12 @@
                        BackgroundColor="{StaticResource PanelBackgroundColor}" 
                        PlaceholderColor="Gray" 
                        TextColor="{StaticResource TextColor}"
+                       Text="{Binding MessageBody, Mode=TwoWay }"
                        HeightRequest="30"
                        HorizontalOptions="FillAndExpand"
                        Focused="MessageEntry_Focused"
                        Unfocused="MessageEntry_Unfocused"/>
+                    <!-- Send Message Button -->
                     <Button TextColor="{StaticResource TextColor}" Text="&#xf1d8;"
                         RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                         Property=Width,Factor=0.875,Constant=0}"
@@ -130,7 +137,8 @@
                         BorderRadius="20"
                         HeightRequest="40" 
                         WidthRequest="40"
-                        HorizontalOptions="End">
+                        HorizontalOptions="End"
+                        Pressed="SendMessageBtn_Pressed">
                         <Button.FontFamily>
                             <OnPlatform x:TypeArguments="x:String">
                                 <On Platform="iOS" Value="Font Awesome 5 Free" />

@@ -11,7 +11,7 @@ namespace mewmont.Models
         private Media currentMedia;
         private Permission defaultPermissions;
         private string passkey;
-        private List<Message> chatlog;
+        private List<Message> chatlog = new List<Message>();
         private RoomMember[] roomMembers;
 
         public int Id
@@ -59,6 +59,11 @@ namespace mewmont.Models
         public bool DestroyRoom()
         {
             throw new NotImplementedException();
+        }
+
+        public void AddMessage(Message message)
+        {
+            chatlog.Add(message);
         }
 
         public void ChangeMedia(Media newMedia)

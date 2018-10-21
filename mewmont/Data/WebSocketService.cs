@@ -41,6 +41,21 @@ namespace mewmont.Data
             await SendData(sendingData);
         }
 
+        public async void SendMessage(string message, string author)
+        {
+            Message messageData = new Message();
+            messageData.Author = author;
+            messageData.MessageBody = message;
+            messageData.SendTime = DateTime.Now;
+            SendMessage data = new SendMessage();
+            data.messageData = messageData;
+            data.token = token;
+            data.room = roomId;
+
+            string sendingData = JsonConvert.SerializeObject(data);
+            await SendData(sendingData);
+        }
+
         public async void PlaybackStateChange(int state)
         {
             PlaybackStateChange data = new PlaybackStateChange();

@@ -19,6 +19,7 @@ namespace mewmont.Data
         public List<Room> Rooms { private set; get; }
 
         public event EventHandler MediaChanged;
+        public event EventHandler MessageRecieved;
 
         public RoomManager(WebSocketService wsService)
         {
@@ -37,7 +38,7 @@ namespace mewmont.Data
             Room = await restService.PutRoomData(sendingRoom);
         }
 
-        public async void StartRoomConnection(int id)
+        public async Task StartRoomConnection(int id)
         {
             await GetRoomData(id);
             webSocketService.StartLoadingData(id);
@@ -74,6 +75,10 @@ namespace mewmont.Data
                     Room.CurrentMedia = response.media;
                     MediaChanged?.Invoke(this, new EventArgs());
                     break;
+                case "message":
+                    Room.AddMessage(response.messageData);
+                    MessageRecieved?.Invoke(this, new EventArgs());
+                    break;
                 default:
                     break;
             }
@@ -93,6 +98,10 @@ namespace mewmont.Data
         public void GetRoomMedia()
         {
             webSocketService.GetMedia();
+        }
+        public void SendMessage(string message, string author)
+        {
+            webSocketService.SendMessage(message, author);
         }
     }
 }

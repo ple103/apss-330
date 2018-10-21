@@ -25,6 +25,7 @@ namespace mewmont
             RoomId = roomId;
             thisViewModel = ((RoomViewModel)this.BindingContext);
             App.RoomManager.MediaChanged += new EventHandler(RoomMediaChanged);
+            App.RoomManager.MessageRecieved += new EventHandler(MessageRecieved);
             createMediaViewerVideo();
         }
 
@@ -61,12 +62,13 @@ namespace mewmont
             NavigationPage.SetHasNavigationBar(this, false);
         }
 
-        private void MediaViewerLoaded(object sender, EventArgs e)
+        private async void MediaViewerLoaded(object sender, EventArgs e)
         {
             // Only initiate the room connection once the media viewer content has loaded,
             // as any calls to the media viewer video beforehand will be discarded.
-            App.RoomManager.StartRoomConnection(RoomId);
+            await App.RoomManager.StartRoomConnection(RoomId);
             thisViewModel.IsLoading = false;
+            ChatBoxContent.ItemsSource = App.RoomManager.Room.Chatlog;
         }
 
         private void MessageEntry_Focused(object sender, FocusEventArgs e)
@@ -122,6 +124,13 @@ namespace mewmont
             }
         }
 
+        private void MessageRecieved(object sender, System.EventArgs e)
+        {
+            ChatBoxContent.ItemsSource = null;
+            ChatBoxContent.ItemsSource = App.RoomManager.Room.Chatlog;
+            ChatBoxContent.ScrollTo((ChatBoxContent.ItemsSource as List<Message>).Last(), ScrollToPosition.End, true);
+        }
+
         private void PlayPause_OnClick(object sender, System.EventArgs e)
         {
             if (App.RoomManager.Room.CurrentMedia.playbackState == 0)
@@ -131,6 +140,13 @@ namespace mewmont
             {
                 App.RoomManager.SetRoomPlaybackState(0);
             }
+        }
+
+        private void SendMessageBtn_Pressed(object sender, System.EventArgs e)
+        {
+            App.RoomManager.SendMessage(thisViewModel.MessageBody, App.UserManager.User.Username);
+            // Clear the send message entry
+            thisViewModel.MessageBody = null;
         }
     }
 }

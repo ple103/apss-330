@@ -11,5 +11,6 @@ namespace mewmont.Models
         public string mediaId { get; set; }
         public int room { get; set; }
         public Media media { get; set; }
+        public Message messageData { get; set; }
     }
 }

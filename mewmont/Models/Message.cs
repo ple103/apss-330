@@ -6,7 +6,7 @@ namespace mewmont.Models
     {
         private string messageBody;
         private DateTime sendTime;
-        private RoomMember author;
+        private string author;
 
         public string MessageBody
         {
@@ -20,7 +20,7 @@ namespace mewmont.Models
             set { sendTime = value; }
         }
 
-        public RoomMember Author
+        public string Author
         {
             get { return author; }
             set { author = value; }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using mewmont.Models;
 using Xamarin.Forms;
 
 namespace mewmont
@@ -125,6 +126,35 @@ namespace mewmont
 
             double PageWidth = App.ScreenWidth;
             return PageWidth / mediaAspectRatio;
+        }
+
+        public List<Message> Messages
+        {
+            get
+            {
+                return App.RoomManager.Room.Chatlog;
+            }
+        }
+
+        private string messageBody;
+        public string MessageBody
+        {
+            set
+            {
+                if (messageBody != value)
+                {
+                    messageBody = value;
+
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("MessageBody"));
+                    }
+                }
+            }
+            get
+            {
+                return messageBody;
+            }
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
