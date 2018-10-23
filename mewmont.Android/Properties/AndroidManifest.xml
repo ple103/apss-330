@@ -1,5 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.mewmont">
-	<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="27" android:hardwareAccelerated="true"/>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.mewmont" android:installLocation="auto">
+	<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="27" android:hardwareAccelerated="true" />
+	<uses-permission android:name="android.permission.CAPTURE_VIDEO_OUTPUT" />
+	<uses-permission android:name="android.permission.CAPTURE_AUDIO_OUTPUT" />
+	<uses-permission android:name="android.permission.RECORD_AUDIO" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.CAMERA" />
 	<application android:label="mewmont.Android" android:theme="@android:style/Theme.Material"></application>
 </manifest>
