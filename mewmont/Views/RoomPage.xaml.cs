@@ -117,10 +117,26 @@ namespace mewmont
         {
             Media thisMedia = App.RoomManager.Room.CurrentMedia;
             thisViewModel.PlaceholderImage = thisMedia.thumbnailUrl;
-            MediaViewerVideo.InjectJavaScript("changeMedia('" + thisMedia.mediaId + "', " + thisMedia.playbackState +    ");");
+            string JSCommand = "changeMedia('" + thisMedia.mediaId + "', " + thisMedia.playbackState + ", " + thisMedia.currentPosition + ");";
+            MediaViewerVideo.InjectJavaScript(JSCommand);
+            Debug.WriteLine("=====================================================" + JSCommand);
             if (thisMedia.playbackState == 1)
             {
                 thisViewModel.VideoPlaceholderVisible = false;
+            }
+            thisViewModel.TotalDuration = ((thisMedia.totalDuration % 3600) / 60) + ":" + (thisMedia.totalDuration % 60);
+            thisViewModel.TotalDurationSeconds = thisMedia.totalDuration;
+            thisViewModel.CurrentPositionSeconds = thisMedia.currentPosition;
+        }
+
+        private void MediaTimeChange(object sender, System.EventArgs e)
+        {
+            Media thisMedia = App.RoomManager.Room.CurrentMedia;
+            int currentPosition = Convert.ToInt32(thisViewModel.CurrentPositionSeconds);
+            if (thisMedia.currentPosition != currentPosition)
+            {
+                thisMedia.currentPosition = currentPosition;
+                App.RoomManager.UpdateMedia(thisMedia);
             }
         }
 

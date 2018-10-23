@@ -41,6 +41,17 @@ namespace mewmont.Data
             await SendData(sendingData);
         }
 
+        public async void UpdateMedia(Media media)
+        {
+            UpdateMedia data = new UpdateMedia();
+            data.media = media;
+            data.room = roomId;
+            data.token = token;
+
+            string sendingData = JsonConvert.SerializeObject(data);
+            await SendData(sendingData);
+        }
+
         public async void SendMessage(string message, string author)
         {
             Message messageData = new Message();

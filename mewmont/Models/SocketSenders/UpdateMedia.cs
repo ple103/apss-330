@@ -4,16 +4,16 @@ using System.Text;
 
 namespace mewmont.Models.SocketSenders
 {
-    public class MediaChange
+    public class UpdateMedia
     {
         public string msg { get; private set; }
         public string token { get; set; }
         public int room { get; set; }
-        public string videoId { get; set; }
+        public Media media { get; set; }
 
-        public MediaChange()
+        public UpdateMedia()
         {
-            msg = "mediaChange";
+            msg = "updateMedia";
         }
     }
 }

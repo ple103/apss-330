@@ -90,6 +90,11 @@ namespace mewmont.Data
             webSocketService.ChangeMedia(videoId);
         }
 
+        public void UpdateMedia(Media media)
+        {
+            webSocketService.UpdateMedia(media);
+        }
+
         public void SetRoomPlaybackState(int playBackState)
         {
             webSocketService.PlaybackStateChange(playBackState);

@@ -10,11 +10,11 @@ namespace mewmont.Models
         }
 
         // We will use DateTime for now. I will create a Time class to abstract this later.
-        private DateTime currentPosition;
+        public int currentPosition { get; set; }
         // This may change to a video object (once we create it) instead of it being a Uri.
         public string mediaId { get; set; }
         public string thumbnailUrl { get; set; }
-        private DateTime totalDuration;
+        public int totalDuration;
         private string title;
         public int playbackState { get; set; }
 

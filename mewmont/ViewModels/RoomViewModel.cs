@@ -157,6 +157,91 @@ namespace mewmont
             }
         }
 
+        private string totalDuration;
+        public string TotalDuration
+        {
+            set
+            {
+                if (totalDuration != value)
+                {
+                    totalDuration = value;
+
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("TotalDuration"));
+                    }
+                }
+            }
+            get
+            {
+                return totalDuration;
+            }
+        }
+
+
+        private double totalDurationSeconds = 1;
+        public double TotalDurationSeconds
+        {
+            set
+            {
+                if (totalDurationSeconds != value)
+                {
+                    totalDurationSeconds = value;
+
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("TotalDurationSeconds"));
+                    }
+                }
+            }
+            get
+            {
+                return totalDurationSeconds;
+            }
+        }
+
+        private string currentPosition;
+        public string CurrentPosition
+        {
+            set
+            {
+                if (currentPosition != value)
+                {
+                    currentPosition = value;
+
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("CurrentPosition"));
+                    }
+                }
+            }
+            get
+            {
+                return currentPosition;
+            }
+        }
+
+        private double currentPositionSeconds = 0;
+        public double CurrentPositionSeconds
+        {
+            set
+            {
+                if (currentPositionSeconds != value)
+                {
+                    currentPositionSeconds = value;
+
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("CurrentPositionSeconds"));
+                    }
+                }
+            }
+            get
+            {
+                return currentPositionSeconds;
+            }
+        }
+
         protected virtual void OnPropertyChanged(string propertyName)
         {
             var changed = PropertyChanged;
