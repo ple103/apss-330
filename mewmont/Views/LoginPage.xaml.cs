@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -15,7 +11,6 @@ namespace mewmont
         public LoginPage()
         {
             InitializeComponent();
-
         }
 
         protected override void OnAppearing()
@@ -31,7 +26,8 @@ namespace mewmont
             if (App.UserManager.User.Token == null)
             {
                 await DisplayAlert("Error", "Failed to log in. Please check your login details", "OK");
-            } else
+            }
+            else
             {
                 await Navigation.PushAsync(new HomePage());
             }
@@ -40,6 +36,11 @@ namespace mewmont
         private async void RegisterBtn_Pressed(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new RegisterPage());
+        }
+
+        private void SkipBtn_Tapped(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new HomePage());
         }
     }
 }
