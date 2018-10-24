@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:mewmont"
              xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:controls1="clr-namespace:VidyoConnector.Controls"
              x:Class="mewmont.RoomPage"
              BackgroundColor="{StaticResource PageBackgroundColor}">
     <ContentPage.BindingContext>
@@ -22,6 +23,7 @@
                        WidthRequest="{Binding MediaWidth}"
                        IsVisible="{Binding VideoPlaceholderVisible}">
                 </Image>
+                <!-- <controls1:NativeView x:Name="_videoView" BackgroundColor="Aqua"/> -->
                 <StackLayout Orientation="Horizontal"
                              x:Name="MediaViewerUI"
                              WidthRequest="{Binding MediaWidth}"

@@ -156,6 +156,7 @@
     <Compile Include="VidyoClient-AndroidSDK\include\csharp\VideoFrame.cs" />
     <Compile Include="VidyoClient-AndroidSDK\include\csharp\VirtualDeviceManager.cs" />
     <Compile Include="VidyoClient-AndroidSDK\include\csharp\VirtualShareManager.cs" />
+    <Compile Include="VidyoController.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\fa-regular-400.ttf" />

@@ -10,5 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)CustomViews\HybridWebViewV2Renderer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VidyoController.cs" />
   </ItemGroup>
 </Project>

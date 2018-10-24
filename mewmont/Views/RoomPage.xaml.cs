@@ -9,6 +9,7 @@ using mewmont.Models;
 using mewmont.YouTube;
 using XLabs.Forms.Controls;
 using XLabs.Serialization.JsonNET;
+using VidyoConnector;
 
 namespace mewmont
 {
@@ -18,6 +19,9 @@ namespace mewmont
         HybridWebViewV2 MediaViewerVideo;
         JsonSerializer serializer = new JsonSerializer();
         int RoomId;
+
+        IVidyoController _vidyoController = null;
+        VidyoViewModel _viewModel = VidyoViewModel.GetInstance();
 
         public RoomPage(int roomId)
 		{
@@ -67,6 +71,8 @@ namespace mewmont
             // Only initiate the room connection once the media viewer content has loaded,
             // as any calls to the media viewer video beforehand will be discarded.
             await App.RoomManager.StartRoomConnection(RoomId);
+            //App._vidyoController.SetNativeView(_videoView);
+            //App._vidyoController.Connect(Constants.VidyoHost, App.UserManager.User.VidyoToken, App.UserManager.User.Username, App.RoomManager.Room.Id.ToString());
             thisViewModel.IsLoading = false;
             ChatBoxContent.ItemsSource = App.RoomManager.Room.Chatlog;
         }
@@ -163,6 +169,12 @@ namespace mewmont
             App.RoomManager.SendMessage(thisViewModel.MessageBody, App.UserManager.User.Username);
             // Clear the send message entry
             thisViewModel.MessageBody = null;
+        }
+
+        public void InitializeVidyo()
+        {
+            // Provide the videoView to the Vidyo controller
+            _vidyoController = App._vidyoController;
         }
     }
 }

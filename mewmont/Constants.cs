@@ -8,5 +8,6 @@ namespace mewmont
     {
         public const string StreamrAPIUrl = "https://streamrqut.be/";
         public const string StreamrWSUrl = "ws://streamrqut.be:1337/";
+        public const string VidyoHost = "prod.vidyo.io";
     }
 }

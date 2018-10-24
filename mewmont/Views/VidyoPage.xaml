@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:mewmont"
+             xmlns:controls="clr-namespace:VidyoConnector.Controls"
+             x:Class="mewmont.VidyoPage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="305" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="65" />
+            <ColumnDefinition Width="65" />
+            <ColumnDefinition Width="65" />
+            <ColumnDefinition Width="65" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <controls:NativeView x:Name="_videoView" Grid.Row="0" Grid.Column="0" Grid.RowSpan="5" Grid.ColumnSpan="6" BackgroundColor="Aqua"/>
+
+        <Frame x:Name="_form" Padding="0,0,0,0" Grid.Row="1"
+            Grid.Column="1"
+            Grid.ColumnSpan="4"
+            Opacity="0.9"
+            BackgroundColor="Silver">
+
+            <StackLayout>
+                <Image Source="vidyo_io.png" HeightRequest="100" WidthRequest="100"/>
+                <Entry HeightRequest="1" BackgroundColor="#A9AAAB"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Host" FontSize="10" WidthRequest="80" HeightRequest="30" HorizontalTextAlignment="End" VerticalTextAlignment="Center" />
+                    <Entry Placeholder="prod.vidyo.io" Text="{Binding Host, Mode=TwoWay}" FontSize="10" WidthRequest="180" HeightRequest="30" BackgroundColor="#F0F3F4"/>
+                </StackLayout>
+                <Entry HeightRequest="1" BackgroundColor="#A9AAAB"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Token" FontSize="10" WidthRequest="80" HeightRequest="30" HorizontalTextAlignment="End" VerticalTextAlignment="Center" />
+                    <Entry Placeholder="required" Text="{Binding Token, Mode=TwoWay}" FontSize="10" WidthRequest="180" HeightRequest="30" BackgroundColor="#F0F3F4"/>
+                </StackLayout>
+                <Entry HeightRequest="1" BackgroundColor="#A9AAAB"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Display Name" FontSize="10" WidthRequest="80" HeightRequest="30" HorizontalTextAlignment="End" VerticalTextAlignment="Center" />
+                    <Entry Placeholder="your name" Text="{Binding DisplayName, Mode=TwoWay}" FontSize="10" WidthRequest="180" HeightRequest="30" BackgroundColor="#F0F3F4"/>
+                </StackLayout>
+                <Entry HeightRequest="1" BackgroundColor="#A9AAAB"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Resource ID" FontSize="10" WidthRequest="80" HeightRequest="30" HorizontalTextAlignment="End" VerticalTextAlignment="Center" />
+                    <Entry Placeholder="required" Text="{Binding ResourceId, Mode=TwoWay}" FontSize="10" WidthRequest="180" HeightRequest="30"  BackgroundColor="#F0F3F4"/>
+                </StackLayout>
+                <Entry HeightRequest="1" BackgroundColor="#A9AAAB"/>
+                <Label x:Name="ClientVersionLabel" IsVisible="false" Text="{Binding ClientVersion}" TextColor="Red" FontSize="15" HeightRequest="30" WidthRequest="200" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+
+                <ActivityIndicator x:Name="_connectionSpinner" IsRunning="false" HeightRequest="15"/>
+            </StackLayout>
+        </Frame>
+
+        <Image x:Name="_toggleConnectButton" Source="{Binding CallImage}" Grid.Row="3" Grid.Column="1">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnConnectButtonClicked"/>
+            </Image.GestureRecognizers>
+        </Image>
+
+        <Image Source="camera_switch.png" Grid.Row="3" Grid.Column="2">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnCycleCameraButtonClicked"/>
+            </Image.GestureRecognizers>
+        </Image>
+        <Image Source="{Binding CameraPrivacyImage}" Grid.Row="3" Grid.Column="3">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnCameraPrivacyButtonClicked"/>
+            </Image.GestureRecognizers>
+        </Image>
+        <Image Source="{Binding MicrophonePrivacyImage}" Grid.Row="3" Grid.Column="4">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnMicrophonePrivacyButtonClicked"/>
+            </Image.GestureRecognizers>
+        </Image>
+        <Label
+            Text="{Binding ToolbarStatus}"
+            TextColor="White"
+            FontSize="15"
+            Grid.Row="4"
+            Grid.Column="2"
+            Grid.ColumnSpan="2"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+        <Image 
+            Source="gear.png"
+            Grid.Row="4"
+            Grid.Column="5"
+            HorizontalOptions="End"
+            VerticalOptions="Start"
+            HeightRequest="75" 
+            WidthRequest="75">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="DiagnosticsButtonClicked"/>
+            </Image.GestureRecognizers>
+        </Image>
+    </Grid>
+</ContentPage>
