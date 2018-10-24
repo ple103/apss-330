@@ -61,18 +61,26 @@
                         Property=Height,Factor=.69,Constant=0}"/>
             <Button Text="Register"
                     Pressed="RegisterBtn_Pressed"
-                   TextColor="White"
+                    TextColor="White"
                     BackgroundColor="Transparent"
-                   RelativeLayout.XConstraint =
-                        "{ConstraintExpression Type=RelativeToParent,
-                             Property=Width,
-                             Factor=0.1,
-                             Constant=0}"
-                   RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-                        Property=Height,Factor=.7,Constant=0}"
-                   RelativeLayout.WidthConstraint="{ConstraintExpression
-                        Type=RelativeToParent,Property=Width,Factor=.8,Constant=0}"
-                    HeightRequest="40"/>
+                    RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.08, Constant=0}"
+                    RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height,Factor=.7,Constant=0}"
+                    RelativeLayout.WidthConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=0.7,Constant=0}"
+                    HeightRequest="40" />
+            <Label Text="OR"
+                   TextColor="White" 
+                   HorizontalTextAlignment="Center"
+                   RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.75, Constant=-100}"
+                   RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.715, Constant=0}"/>
+            <Button Text="SKIP"
+                    Pressed="SkipBtn_Tapped"
+                    TextColor="DimGray"
+                    BackgroundColor="Transparent"
+                    RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.26, Constant=0}"
+                    RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height,Factor=.7,Constant=0}"
+                    RelativeLayout.WidthConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=0.7,Constant=0}"
+                    HeightRequest="40" />
+
             <Image Source="vid_btm_pv.png"
                    Margin="40, 40, 40, 40"
                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.8}">

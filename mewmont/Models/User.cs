@@ -27,6 +27,8 @@ namespace mewmont.Models
             set { id = value; }
         }
 
+        public string VidyoToken { get; set; }
+
         public async void Logout()
         {
             throw new NotImplementedException();
