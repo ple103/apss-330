@@ -24,39 +24,57 @@
                        IsVisible="{Binding VideoPlaceholderVisible}">
                 </Image>
                 <!-- <controls1:NativeView x:Name="_videoView" BackgroundColor="Aqua"/> -->
-                <StackLayout Orientation="Horizontal"
-                             x:Name="MediaViewerUI"
-                             WidthRequest="{Binding MediaWidth}"
-                             HeightRequest="{Binding MediaHeight}">
-                    <!-- Play/Pause Button -->
-                    <Image  HeightRequest="40"
+            </AbsoluteLayout>
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="FillAndExpand"
+                         BackgroundColor="{StaticResource PanelBackgroundColor}"
+                             x:Name="MediaViewerUI">
+                <!-- Play/Pause Button -->
+                <Image  HeightRequest="40"
                             Source="{Binding PlayBtnSource}"
                             WidthRequest="40"
                             VerticalOptions="End"
                             Margin="5, 0, 0, 5">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
                                     Tapped="PlayPause_OnClick"
                                     NumberOfTapsRequired="1" />
-                        </Image.GestureRecognizers>
-                    </Image>
-                    <Slider HorizontalOptions="FillAndExpand"
+                    </Image.GestureRecognizers>
+                </Image>
+                <!-- Resync Button -->
+                <Image  HeightRequest="40"
+                            Source="resync_btn.png"
+                            WidthRequest="40"
+                            VerticalOptions="End"
+                            Margin="5, 5, 0, 5">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                                    Tapped="MediaTimeChange"
+                                    NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label HorizontalOptions="End"
+                           VerticalOptions="End"
+                           Text="{Binding CurrentPosition}"
+                           TextColor="White"
+                           Margin="5, 0, 5, 10">
+                </Label>
+                <Slider HorizontalOptions="FillAndExpand"
                             VerticalOptions="End"
                             x:Name="timeSlider"                     
                             Maximum="{Binding TotalDurationSeconds}"
                             Minimum="0"
                             Value="{Binding CurrentPositionSeconds, Mode=TwoWay}"
                             Margin="0, 0, 5, 10"
-                            ValueChanged="MediaTimeChange">
-                    </Slider>
-                    <Label HorizontalOptions="End"
+                            ValueChanged="TimeTapped">
+                </Slider>
+                <Label HorizontalOptions="End"
                            VerticalOptions="End"
                            Text="{Binding TotalDuration}"
                            TextColor="White"
-                           Margin="0, 0, 5, 5">
-                    </Label>
-                </StackLayout>
-            </AbsoluteLayout>
+                           Margin="0, 0, 5, 10">
+                </Label>
+            </StackLayout>
             <!-- Chat Area -->
             <StackLayout x:Name="ChatArea" 
                      Orientation="Vertical"

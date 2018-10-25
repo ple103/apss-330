@@ -130,6 +130,7 @@ namespace mewmont
             {
                 thisViewModel.PlayBtnSource = "pause_btn.png";
                 thisViewModel.VideoPlaceholderVisible = false;
+                pseudoTimeTracker();
             } else
             {
                 thisViewModel.PlayBtnSource = "play_btn.png";
@@ -137,6 +138,51 @@ namespace mewmont
             thisViewModel.TotalDuration = ((thisMedia.totalDuration % 3600) / 60) + ":" + (thisMedia.totalDuration % 60);
             thisViewModel.TotalDurationSeconds = thisMedia.totalDuration;
             thisViewModel.CurrentPositionSeconds = thisMedia.currentPosition;
+            thisViewModel.CurrentPosition = ((thisMedia.currentPosition % 3600) / 60) + ":" + (thisMedia.currentPosition % 60);
+        }
+
+
+        private void TimeTapped(object sender, System.EventArgs e)
+        {
+            isTimeFrozen = true;
+            Device.StartTimer(TimeSpan.FromSeconds(3), () =>
+            {
+                isTimeFrozen = false;
+                return false;
+            });
+        }
+
+        private bool isTimeTracking = false;
+        private bool isTimeFrozen = false;
+
+        private void pseudoTimeTracker()
+        {
+            if (!isTimeTracking) { 
+                Device.StartTimer(TimeSpan.FromSeconds(1), () =>
+                {
+                    isTimeTracking = true;
+
+                    if (thisViewModel.CurrentPositionSeconds >= thisViewModel.TotalDurationSeconds)
+                    {
+                        thisViewModel.CurrentPositionSeconds = 0;
+                    }
+
+                    var currentMedia = App.RoomManager.Room.CurrentMedia;
+                    if (currentMedia.playbackState == 1)
+                    {
+                        if (!isTimeFrozen)
+                        {
+                            thisViewModel.CurrentPositionSeconds++;
+                            thisViewModel.CurrentPosition = (((Convert.ToInt32(thisViewModel.CurrentPositionSeconds)) % 3600) / 60 + ":" + (Convert.ToInt32(thisViewModel.CurrentPositionSeconds)) % 60);
+                        }
+                        return true;
+                    } else
+                    {
+                        isTimeTracking = false;
+                        return false;
+                    }
+                });
+            }
         }
 
         private void MediaTimeChange(object sender, System.EventArgs e)

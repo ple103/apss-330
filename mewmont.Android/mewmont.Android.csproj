@@ -226,6 +226,7 @@
     <AndroidResource Include="Resources\drawable\play_btn.png" />
     <AndroidResource Include="Resources\drawable\create_room_btn.png" />
     <AndroidResource Include="Resources\drawable\join_room_btn.png" />
+    <AndroidResource Include="Resources\drawable\resync_btn.png" />
     <Content Include="VidyoClient-AndroidSDK\readme_vidyoclient_android.html" />
     <Content Include="VidyoClient-AndroidSDK\samples\VidyoConnector\android\app\src\main\AndroidManifest.xml" />
     <Content Include="VidyoClient-AndroidSDK\samples\VidyoConnector\android\app\src\main\java\com\vidyo\vidyoconnector\IVideoFrameListener.java" />
