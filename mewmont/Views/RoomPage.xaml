@@ -65,8 +65,7 @@
                             Maximum="{Binding TotalDurationSeconds}"
                             Minimum="0"
                             Value="{Binding CurrentPositionSeconds, Mode=TwoWay}"
-                            Margin="0, 0, 5, 10"
-                            ValueChanged="TimeTapped">
+                            Margin="0, 0, 5, 10">
                 </Slider>
                 <Label HorizontalOptions="End"
                            VerticalOptions="End"

@@ -142,15 +142,15 @@ namespace mewmont
         }
 
 
-        private void TimeTapped(object sender, System.EventArgs e)
-        {
-            isTimeFrozen = true;
-            Device.StartTimer(TimeSpan.FromSeconds(3), () =>
-            {
-                isTimeFrozen = false;
-                return false;
-            });
-        }
+        //private void TimeTapped(object sender, System.EventArgs e)
+        //{
+        //    isTimeFrozen = true;
+        //    Device.StartTimer(TimeSpan.FromSeconds(3), () =>
+        //    {
+        //        isTimeFrozen = false;
+        //        return false;
+        //    });
+        //}
 
         private bool isTimeTracking = false;
         private bool isTimeFrozen = false;
