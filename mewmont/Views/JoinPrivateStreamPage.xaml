@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:mewmont"
              x:Class="mewmont.JoinPrivateStreamPage">
     <ContentPage.Content>
-        <StackLayout Padding="10, 0" BackgroundColor="Gray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout Padding="10, 0" BackgroundColor="{StaticResource PanelBackgroundColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <Label Text="&#x0A;Join a current Stream &#x0A;"
                    HorizontalOptions="Center" 
                    TextColor="White"

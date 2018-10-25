@@ -218,7 +218,14 @@
     <AndroidResource Include="Resources\drawable\streamr_logo.png" />
     <AndroidResource Include="Resources\drawable\vid_btm_pv.png" />
     <AndroidResource Include="Resources\drawable\login_bg.png" />
-    <AndroidResource Include="Resources\drawable\btn_settings.png" />
+    <AndroidResource Include="Resources\drawable\settings_btn.png" />
+    <AndroidResource Include="Resources\drawable\exit_btn.png" />
+    <AndroidResource Include="Resources\drawable\comm_btn.png" />
+    <AndroidResource Include="Resources\drawable\send_btn.png" />
+    <AndroidResource Include="Resources\drawable\pause_btn.png" />
+    <AndroidResource Include="Resources\drawable\play_btn.png" />
+    <AndroidResource Include="Resources\drawable\create_room_btn.png" />
+    <AndroidResource Include="Resources\drawable\join_room_btn.png" />
     <Content Include="VidyoClient-AndroidSDK\readme_vidyoclient_android.html" />
     <Content Include="VidyoClient-AndroidSDK\samples\VidyoConnector\android\app\src\main\AndroidManifest.xml" />
     <Content Include="VidyoClient-AndroidSDK\samples\VidyoConnector\android\app\src\main\java\com\vidyo\vidyoconnector\IVideoFrameListener.java" />

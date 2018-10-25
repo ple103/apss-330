@@ -29,22 +29,24 @@
                              WidthRequest="{Binding MediaWidth}"
                              HeightRequest="{Binding MediaHeight}">
                     <!-- Play/Pause Button -->
-                    <Button TextColor="{StaticResource TextColor}" Text="PLAY"
-                            BackgroundColor="{StaticResource DefaultButtonColor}"
-                            BorderRadius="20"
-                            HeightRequest="40"
+                    <Image  HeightRequest="40"
+                            Source="{Binding PlayBtnSource}"
                             WidthRequest="40"
                             VerticalOptions="End"
-                            Pressed="PlayPause_OnClick"
                             Margin="5, 0, 0, 5">
-                    </Button>
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                    Tapped="PlayPause_OnClick"
+                                    NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
                     <Slider HorizontalOptions="FillAndExpand"
                             VerticalOptions="End"
-                            x:Name="timeSlider"
+                            x:Name="timeSlider"                     
                             Maximum="{Binding TotalDurationSeconds}"
                             Minimum="0"
                             Value="{Binding CurrentPositionSeconds, Mode=TwoWay}"
-                            Margin="0, 0, 5, 5"
+                            Margin="0, 0, 5, 10"
                             ValueChanged="MediaTimeChange">
                     </Slider>
                     <Label HorizontalOptions="End"
@@ -88,43 +90,39 @@
                              HorizontalOptions="Start"
                              IsVisible="{Binding OptionsBtnsVisible}">
                         <!-- Exit Button-->
-                        <Button TextColor="{StaticResource TextColor}" Text="&#xf2f5;"
-                            BackgroundColor="{StaticResource ThirdaryButtonColor}"
-                            BorderRadius="20"
-                            HeightRequest="40"
-                            WidthRequest="40"
-                            Pressed="LeaveRoom_Triggered">
-                            <Button.FontFamily>
-                                <OnPlatform x:TypeArguments="x:String">
-                                    <On Platform="iOS" Value="Font Awesome 5 Free" />
-                                    <On Platform="Android" Value="fa-regular-400.ttf#Font Awesome 5 Free" />
-                                    <On Platform="UWP" Value="Assets/Fonts/fa-regular-400#Font Awesome 5 Free" />
-                                </OnPlatform>
-                            </Button.FontFamily>
-                        </Button>
-                        <!-- Room Settings Button-->
-                        <Button TextColor="{StaticResource TextColor}"
-                            BackgroundColor="{StaticResource DefaultButtonColor}"
-                            BorderRadius="20"
+                        <Image
+                            Source="exit_btn.png"
                             HeightRequest="40" 
-                            WidthRequest="40"
-                            Pressed="SettingsBtn_OnClick">
-                        </Button>
+                            WidthRequest="40">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="LeaveRoom_Triggered"
+                                    NumberOfTapsRequired="1" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <!-- Room Settings Button-->
+                        <Image
+                            Source="settings_btn.png"
+                            HeightRequest="40" 
+                            WidthRequest="40">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="SettingsBtn_OnClick"
+                                    NumberOfTapsRequired="1" />
+                            </Image.GestureRecognizers>
+                        </Image>
+
                         <!-- Chat Mode Button-->
-                        <Button TextColor="{StaticResource TextColor}" Text="&#xf086;"
-                            BackgroundColor="{StaticResource SecondaryButtonColor}"
-                            BorderRadius="20"
-                            HeightRequest="40"
-                            WidthRequest="40"
-                            Pressed="ChatModeBtn_OnClick">
-                            <Button.FontFamily>
-                                <OnPlatform x:TypeArguments="x:String">
-                                    <On Platform="iOS" Value="Font Awesome 5 Free" />
-                                    <On Platform="Android" Value="fa-regular-400.ttf#Font Awesome 5 Free" />
-                                    <On Platform="UWP" Value="Assets/Fonts/fa-regular-400#Font Awesome 5 Free" />
-                                </OnPlatform>
-                            </Button.FontFamily>
-                        </Button>
+                        <Image
+                            Source="comm_btn.png"
+                            HeightRequest="40" 
+                            WidthRequest="40">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="ChatModeBtn_OnClick"
+                                    NumberOfTapsRequired="1" />
+                            </Image.GestureRecognizers>
+                        </Image>
                     </StackLayout>
                     <Entry x:Name="MessageEntry"
                        Placeholder="Aa" 
@@ -137,23 +135,17 @@
                        Focused="MessageEntry_Focused"
                        Unfocused="MessageEntry_Unfocused"/>
                     <!-- Send Message Button -->
-                    <Button TextColor="{StaticResource TextColor}" Text="&#xf1d8;"
-                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                        Property=Width,Factor=0.875,Constant=0}"
-                        BackgroundColor="{StaticResource DefaultButtonColor}"
-                        BorderRadius="20"
+                    <Image 
+                        Source="send_btn.png"
                         HeightRequest="40" 
                         WidthRequest="40"
-                        HorizontalOptions="End"
-                        Pressed="SendMessageBtn_Pressed">
-                        <Button.FontFamily>
-                            <OnPlatform x:TypeArguments="x:String">
-                                <On Platform="iOS" Value="Font Awesome 5 Free" />
-                                <On Platform="Android" Value="fa-regular-400.ttf#Font Awesome 5 Free" />
-                                <On Platform="UWP" Value="Assets/Fonts/fa-regular-400#Font Awesome 5 Free" />
-                            </OnPlatform>
-                        </Button.FontFamily>
-                    </Button>
+                        HorizontalOptions="End">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                    Tapped="SendMessageBtn_Pressed"
+                                    NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
                 </StackLayout>
             </StackLayout>
         </StackLayout>

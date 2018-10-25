@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="mewmont.HomePage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:mewmont"
+             x:Class="mewmont.HomePage">
+    <ContentPage.BindingContext>
+        <local:HomeViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout Padding="10, 0" BackgroundColor="{StaticResource PanelBackgroundColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <!-- Place new controls here -->
@@ -8,28 +14,29 @@
                    Margin="40, 10, 40, 10">
             </Image>
             
-            <Label Text="Welcome User &#x0A;"
+            <Label Text="{Binding Username, StringFormat='Welcome {0} &#x0A;'}"
                    HorizontalOptions="Center" 
                    TextColor="White"
                    FontSize="Large"/>
-            
+
             <Grid ColumnSpacing="20">
-              <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-              </Grid.RowDefinitions>
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-              </Grid.ColumnDefinitions>
-                   <Label Text="Creating a streaming session where you can stream a video to people you want to share with!"
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="Creating a streaming session where you can stream a video to people you want to share with!"
                      HorizontalOptions="Center" 
                      WidthRequest="140"
                      TextColor="White"
                      FontSize="Small"
                      LineBreakMode="WordWrap"
                      Grid.Row="0" 
-                     Grid.Column="0" />
-                   <Label Text="Join a current streaming session that is hosted by another user with a link that is provided by the host."
+                     Grid.Column="0"/>
+
+                <Label Text="Join a current streaming session that is hosted by another user with a link that is provided by the host."
                      HorizontalOptions="Center" 
                      WidthRequest="140"
                      TextColor="White"
@@ -37,36 +44,41 @@
                      LineBreakMode="WordWrap"
                      Grid.Row="0"
                      Grid.Column="1" />
-                   <Button
-                    Pressed="CreateStreamBtn_Pressed"
-                    Text="Create Stream"
-                    BackgroundColor="{StaticResource DefaultButtonColor}"
+                <Image
                     Grid.Row="1"
                     Grid.Column="0"
-                    WidthRequest="80"
+                    Source="create_room_btn.png"
+                    WidthRequest="140"
                     HeightRequest="1"
-                    HorizontalOptions="Center"
-                    TextColor="{StaticResource TextColor}"/>
-                 <Button
-                    Pressed="JoinStreamBtn_Pressed"
-                    Text="Join Stream"
-                    FontSize="Small"
-                    BackgroundColor="{StaticResource SecondaryButtonColor}"
+                    HorizontalOptions="Center">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                                    Tapped="CreateStreamBtn_Pressed"
+                                    NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image
                     Grid.Row="1"
                     Grid.Column="1"
-                    WidthRequest="80"
+                    Source="join_room_btn.png"
+                    WidthRequest="140"
                     HeightRequest="1"
-                    HorizontalOptions="Center"
-                    TextColor="{StaticResource TextColor}"/>
-                 <BoxView  
-                    VerticalOptions="Fill"
-                    HorizontalOptions="CenterAndExpand"
-                    WidthRequest="1"
-                    Grid.Column="0"
-                    Grid.Row="0"
-                    Grid.ColumnSpan="2"
-                    Grid.RowSpan="2"
-                    Color="Black"/>             
+                    HorizontalOptions="Center">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                                    Tapped="JoinStreamBtn_Pressed"
+                                    NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <BoxView  
+                VerticalOptions="Fill"
+                HorizontalOptions="CenterAndExpand"
+                WidthRequest="1"
+                Grid.Column="0"
+                Grid.Row="0"
+                Grid.ColumnSpan="2"
+                Grid.RowSpan="2"
+                Color="Black"/>             
             </Grid>
             <BoxView BackgroundColor="Black" HeightRequest="1"  HorizontalOptions="FillAndExpand"/>
             <Button Text="Streaming Settings"

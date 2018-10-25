@@ -4,7 +4,7 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="10, 0" BackgroundColor="{StaticResource PanelBackgroundColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                 <Label Text="Create a Stream &#x0A;"
+                 <Label Text="Create Room &#x0A;"
                         HorizontalOptions="Center" 
                         TextColor="{StaticResource TextColor}"
                         FontAttributes="Bold"
@@ -15,7 +15,7 @@
                 <Entry x:Name="RoomTitleEntry"
                        PlaceholderColor="{StaticResource TextColor}"
                        TextColor="{StaticResource TextColor}"/>
-                <Label Text="Video URL (Currently Youtube videos are accepted):"
+                <Label Text="Video URL"
                        TextColor="{StaticResource TextColor}"/>
                 <Entry x:Name="MediaIdEntry"
                        PlaceholderColor="White"

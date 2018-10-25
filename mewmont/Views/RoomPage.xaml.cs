@@ -128,7 +128,11 @@ namespace mewmont
             Debug.WriteLine("=====================================================" + JSCommand);
             if (thisMedia.playbackState == 1)
             {
+                thisViewModel.PlayBtnSource = "pause_btn.png";
                 thisViewModel.VideoPlaceholderVisible = false;
+            } else
+            {
+                thisViewModel.PlayBtnSource = "play_btn.png";
             }
             thisViewModel.TotalDuration = ((thisMedia.totalDuration % 3600) / 60) + ":" + (thisMedia.totalDuration % 60);
             thisViewModel.TotalDurationSeconds = thisMedia.totalDuration;

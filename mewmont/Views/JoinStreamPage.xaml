@@ -11,7 +11,7 @@
                    FontAttributes="Bold"
                    FontSize="Large">
                 <Label.Text>
-                    Join Stream
+                    Join Room
                 </Label.Text>
             </Label>
             <ListView x:Name="RoomList"

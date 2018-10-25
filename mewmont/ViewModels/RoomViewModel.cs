@@ -221,6 +221,27 @@ namespace mewmont
             }
         }
 
+        private string playBtnSource = "play_btn.png";
+        public string PlayBtnSource
+        {
+            set
+            {
+                if (playBtnSource != value)
+                {
+                    playBtnSource = value;
+
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("PlayBtnSource"));
+                    }
+                }
+            }
+            get
+            {
+                return playBtnSource;
+            }
+        }
+
         private double currentPositionSeconds = 0;
         public double CurrentPositionSeconds
         {
