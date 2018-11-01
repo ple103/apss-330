@@ -103,6 +103,9 @@ namespace mewmont
             return false;
         }
 
+        /// <summary>
+        /// Prompts user to leave the room, before closing the connection and leaving.
+        /// </summary>
         async void LeaveRoom()
         {
             var answer = await DisplayAlert("Are you sure?", "Do you want to leave this room?", "Yes", "No");
@@ -114,18 +117,33 @@ namespace mewmont
             }
         }
 
-            private void SettingsBtn_OnClick(object sender, EventArgs e)
+        /// <summary>
+        /// Open the settings page when the settings button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SettingsBtn_OnClick(object sender, EventArgs e)
         {
             Navigation.PushAsync(new RoomSettingsPage());
         }
 
+        /// <summary>
+        /// Update the video when a change to the media has occured.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RoomMediaChanged(object sender, System.EventArgs e)
         {
+            // Set the correct placeholder image and obtain media data
             Media thisMedia = App.RoomManager.Room.CurrentMedia;
             thisViewModel.PlaceholderImage = thisMedia.thumbnailUrl;
+
+            // Propogate the media change to the media view.
             string JSCommand = "changeMedia('" + thisMedia.mediaId + "', " + thisMedia.playbackState + ", " + thisMedia.currentPosition + ");";
             MediaViewerVideo.InjectJavaScript(JSCommand);
             Debug.WriteLine("=====================================================" + JSCommand);
+
+            // Toggle the play and pause buttons
             if (thisMedia.playbackState == 1)
             {
                 thisViewModel.PlayBtnSource = "pause_btn.png";
@@ -135,28 +153,23 @@ namespace mewmont
             {
                 thisViewModel.PlayBtnSource = "play_btn.png";
             }
+
+            // Updates time value on the view model, to reflect the latest data.
             thisViewModel.TotalDuration = ((thisMedia.totalDuration % 3600) / 60) + ":" + (thisMedia.totalDuration % 60);
             thisViewModel.TotalDurationSeconds = thisMedia.totalDuration;
             thisViewModel.CurrentPositionSeconds = thisMedia.currentPosition;
             thisViewModel.CurrentPosition = ((thisMedia.currentPosition % 3600) / 60) + ":" + (thisMedia.currentPosition % 60);
         }
 
-
-        //private void TimeTapped(object sender, System.EventArgs e)
-        //{
-        //    isTimeFrozen = true;
-        //    Device.StartTimer(TimeSpan.FromSeconds(3), () =>
-        //    {
-        //        isTimeFrozen = false;
-        //        return false;
-        //    });
-        //}
-
         private bool isTimeTracking = false;
         private bool isTimeFrozen = false;
 
+        /// <summary>
+        /// Update the video time when playing to allow the timebar appearing to be moving.
+        /// </summary>
         private void pseudoTimeTracker()
         {
+            // Check if the media is playing, and update the time upon every second passed.
             if (!isTimeTracking) { 
                 Device.StartTimer(TimeSpan.FromSeconds(1), () =>
                 {
@@ -168,8 +181,10 @@ namespace mewmont
                     }
 
                     var currentMedia = App.RoomManager.Room.CurrentMedia;
+                    // If the media is playing, keep time tracking and update.
                     if (currentMedia.playbackState == 1)
                     {
+                        // If time hasn't froze, keep time tracking enabled, and update the current position.
                         if (!isTimeFrozen)
                         {
                             thisViewModel.CurrentPositionSeconds++;
@@ -185,10 +200,17 @@ namespace mewmont
             }
         }
 
+        /// <summary>
+        /// Update the current position of the media upon a media time change.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MediaTimeChange(object sender, System.EventArgs e)
         {
             Media thisMedia = App.RoomManager.Room.CurrentMedia;
             int currentPosition = Convert.ToInt32(thisViewModel.CurrentPositionSeconds);
+
+            // Only update the position if it is not equal to the current position to avoid time skipping.
             if (thisMedia.currentPosition != currentPosition)
             {
                 thisMedia.currentPosition = currentPosition;
@@ -196,6 +218,11 @@ namespace mewmont
             }
         }
 
+        /// <summary>
+        /// Adds the latest message in the room, to the chatlog.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MessageRecieved(object sender, System.EventArgs e)
         {
             ChatBoxContent.ItemsSource = null;
@@ -203,6 +230,11 @@ namespace mewmont
             ChatBoxContent.ScrollTo((ChatBoxContent.ItemsSource as List<Message>).Last(), ScrollToPosition.End, true);
         }
 
+        /// <summary>
+        /// Updates the room's media upon pressing the play and pause button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PlayPause_OnClick(object sender, System.EventArgs e)
         {
             if (App.RoomManager.Room.CurrentMedia.playbackState == 0)
@@ -214,6 +246,11 @@ namespace mewmont
             }
         }
 
+        /// <summary>
+        /// Broadcasts a message to the room upon pressing the send button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SendMessageBtn_Pressed(object sender, System.EventArgs e)
         {
             App.RoomManager.SendMessage(thisViewModel.MessageBody, App.UserManager.User.Username);

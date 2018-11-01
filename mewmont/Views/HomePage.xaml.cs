@@ -33,6 +33,9 @@ namespace mewmont
             return false;
         }
 
+        /// <summary>
+        /// Prompt the user if they want to log out, and then proceed to the logout page.
+        /// </summary>
         async void Logout()
         {
             var answer = await DisplayAlert("Are you sure?", "Do you want to log out of Streamr?", "Yes", "No");

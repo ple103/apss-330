@@ -24,20 +24,24 @@ namespace mewmont.Data
 
         public RestService()
         {
-            #region forbasicauthentication
             client = new HttpClient();
             client.MaxResponseContentBufferSize = 256000;
-            #endregion
 
             webSocketClient = new ClientWebSocket();
         }
 
+        /// <summary>
+        /// Puts the specified room onto the list of rooms, either public or private, on the server.
+        /// </summary>
+        /// <param name="creatingRoom">The room that is to be created on the server.</param>
+        /// <returns>The room that was created</returns>
         public async Task<Room> PutRoomData(Room creatingRoom)
         {
             var uri = new Uri(string.Format(Constants.StreamrAPIUrl + "room", string.Empty));
             string creatingRoomJson = JsonConvert.SerializeObject(creatingRoom);
 
             var sendingContent = new StringContent(creatingRoomJson, Encoding.UTF8, "application/json");
+            // Attempt to send the information to the server
             try
             {
                 var response = await client.PutAsync(uri, sendingContent);
@@ -61,6 +65,11 @@ namespace mewmont.Data
             return Room;
         }
 
+        /// <summary>
+        /// Retrieves a room from the server
+        /// </summary>
+        /// <param name="id">The ID of the room to retrieve</param>
+        /// <returns>The room retrieved from the server</returns>
         public async Task<Room> GetRoomData(int id)
         {
             Room = new Room();
@@ -90,6 +99,10 @@ namespace mewmont.Data
             return Room;
         }
 
+        /// <summary>
+        /// Retrieves a list of public rooms from the server
+        /// </summary>
+        /// <returns>A list of rooms from the server</returns>
         public async Task<List<Room>> GetRoomsData()
         {
             Rooms = new List<Room>();
@@ -119,6 +132,11 @@ namespace mewmont.Data
             return Rooms;
         }
 
+        /// <summary>
+        /// Provides credidentials to the server to log in as a user
+        /// </summary>
+        /// <param name="loginData">The login credidentials of the user to log into</param>
+        /// <returns>The model of the user that was logged into, and returned from the server</returns>
         public async Task<User> Login(Login loginData)
         {
             user = new User();
@@ -151,6 +169,11 @@ namespace mewmont.Data
             return user;
         }
 
+        /// <summary>
+        /// Sends a signal to the server to disconnect the user from the current session
+        /// </summary>
+        /// <param name="logoutData">The data for logging out.</param>
+        /// <returns>Whether the log out was successful, or not</returns>
         public async Task<SuccessResponse> Logout(Logout logoutData)
         {
             SuccessResponse SuccessResponse = null;
@@ -183,6 +206,11 @@ namespace mewmont.Data
             return SuccessResponse;
         }
 
+        /// <summary>
+        /// Sends registration data to the server to create a user.
+        /// </summary>
+        /// <param name="registerData">The properties of the user account to be created.</param>
+        /// <returns>The user that was registered, and returned from the server.</returns>
         public async Task<SuccessResponse> Register(Login registerData)
         {
             var uri = new Uri(string.Format(Constants.StreamrAPIUrl + "account", string.Empty));

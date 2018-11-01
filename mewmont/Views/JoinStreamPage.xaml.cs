@@ -24,6 +24,11 @@ namespace mewmont
             RoomList.ItemsSource = await App.RoomManager.GetRoomsData();
         }
 
+        /// <summary>
+        /// When a room is selected, create a new room with the ID of the selected room.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void OnStreamSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var room = e.SelectedItem as Room;
@@ -31,6 +36,11 @@ namespace mewmont
             Navigation.PushAsync(roomPage);
         }
 
+        /// <summary>
+        /// Go to the private room page if the button was pressed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PrivateBtn_Pressed(object sender, EventArgs e)
         {
             var joinPrivateStreamPage = new JoinPrivateStreamPage();

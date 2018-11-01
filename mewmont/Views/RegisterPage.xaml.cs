@@ -18,10 +18,19 @@ namespace mewmont
 			InitializeComponent ();
 		}
 
+        /// <summary>
+        /// Register the user, and return the login page if it was successful.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void RegisterBtn_Pressed(object sender, EventArgs e)
         {
+            // Register the user
             SuccessResponse response = await App.UserManager.Register(UsernameEntry.Text, PasswordEntry.Text);
+
+            // Clear the password text for security
             PasswordEntry.Text = "";
+
             if (response == null || !response.success)
             {
                 await DisplayAlert("Error", "Please enter different details and try again.", "OK");

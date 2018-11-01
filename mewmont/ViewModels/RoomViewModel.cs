@@ -11,6 +11,7 @@ namespace mewmont
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        // The height of the media, to properly display a 16x9 aspect ratio media player.
         public double MediaHeight
         {
             get
@@ -27,6 +28,7 @@ namespace mewmont
             }
         }
 
+        // Whether the bottom left row of buttons are visible.
         private bool optionsBtnsVisible = true;
         public bool OptionsBtnsVisible
         {
@@ -48,6 +50,7 @@ namespace mewmont
             }
         }
 
+        // The placeholder image overlapping the media player when the video is not running.
         private string placeholderImage = "streamr_loading.jpg";
         public string PlaceholderImage
         {
@@ -120,6 +123,11 @@ namespace mewmont
             }
         }
 
+        /// <summary>
+        /// Uses the width of the screen to calculate a suitable height for a
+        /// 16x9 aspect ratio box.
+        /// </summary>
+        /// <returns></returns>
         private double generateMediaHeight()
         {
             double mediaAspectRatio = 16.0 / 9.0;
@@ -128,6 +136,9 @@ namespace mewmont
             return PageWidth / mediaAspectRatio;
         }
 
+        /// <summary>
+        /// List of messages previously sent in the room
+        /// </summary>
         public List<Message> Messages
         {
             get
@@ -136,6 +147,9 @@ namespace mewmont
             }
         }
 
+        /// <summary>
+        /// The message typed by the user to broadcast to the room
+        /// </summary>
         private string messageBody;
         public string MessageBody
         {
@@ -157,6 +171,9 @@ namespace mewmont
             }
         }
 
+        /// <summary>
+        /// The total duration of the media formatte as HH:MM
+        /// </summary>
         private string totalDuration;
         public string TotalDuration
         {
@@ -178,7 +195,9 @@ namespace mewmont
             }
         }
 
-
+        /// <summary>
+        /// The total duration of the media
+        /// </summary>
         private double totalDurationSeconds = 1;
         public double TotalDurationSeconds
         {
@@ -200,6 +219,9 @@ namespace mewmont
             }
         }
 
+        /// <summary>
+        /// The current position of the media formatted as HH:MM
+        /// </summary>
         private string currentPosition;
         public string CurrentPosition
         {
@@ -221,27 +243,9 @@ namespace mewmont
             }
         }
 
-        private string playBtnSource = "play_btn.png";
-        public string PlayBtnSource
-        {
-            set
-            {
-                if (playBtnSource != value)
-                {
-                    playBtnSource = value;
-
-                    if (PropertyChanged != null)
-                    {
-                        PropertyChanged(this, new PropertyChangedEventArgs("PlayBtnSource"));
-                    }
-                }
-            }
-            get
-            {
-                return playBtnSource;
-            }
-        }
-
+        /// <summary>
+        /// The current position
+        /// </summary>
         private double currentPositionSeconds = 0;
         public double CurrentPositionSeconds
         {
@@ -260,6 +264,27 @@ namespace mewmont
             get
             {
                 return currentPositionSeconds;
+            }
+        }
+
+        private string playBtnSource = "play_btn.png";
+        public string PlayBtnSource
+        {
+            set
+            {
+                if (playBtnSource != value)
+                {
+                    playBtnSource = value;
+
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("PlayBtnSource"));
+                    }
+                }
+            }
+            get
+            {
+                return playBtnSource;
             }
         }
 

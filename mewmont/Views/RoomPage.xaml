@@ -23,12 +23,12 @@
                        WidthRequest="{Binding MediaWidth}"
                        IsVisible="{Binding VideoPlaceholderVisible}">
                 </Image>
-                <!-- <controls1:NativeView x:Name="_videoView" BackgroundColor="Aqua"/> -->
             </AbsoluteLayout>
             <StackLayout Orientation="Horizontal"
                          HorizontalOptions="FillAndExpand"
                          BackgroundColor="{StaticResource PanelBackgroundColor}"
-                             x:Name="MediaViewerUI">
+                         x:Name="MediaViewerUI"
+                         IsVisible="{Binding IsLoaded}">
                 <!-- Play/Pause Button -->
                 <Image  HeightRequest="40"
                             Source="{Binding PlayBtnSource}"

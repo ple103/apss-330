@@ -10,10 +10,13 @@ namespace mewmont
 	public partial class App : Application
 	{
         public static IVidyoController _vidyoController = null;
+
         public static int ScreenHeight { get; set; }
         public static int ScreenWidth { get; set; }
+
         public static RoomManager RoomManager { get; private set; }
         public static UserManager UserManager { get; private set; }
+
         public static IRestService restService;
 
         public App (IVidyoController vidyoController)
