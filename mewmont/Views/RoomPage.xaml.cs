@@ -39,7 +39,7 @@ namespace mewmont
         private void createMediaViewerVideo()
         {
             MediaViewerVideo = new HybridWebViewV2() { VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand };
-            MediaViewerVideo.Source = "https://streamrqut.be/youtubeview";
+            MediaViewerVideo.Source = Constants.StreamrAPIUrl + "youtubeview";
             MediaViewerVideo.SetBinding(HybridWebViewV2.HeightRequestProperty, "MediaHeight");
             MediaViewerVideo.SetBinding(HybridWebViewV2.IsVisibleProperty, "IsLoaded");
             MediaViewerVideo.BindingContext = thisViewModel;
