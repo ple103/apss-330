@@ -18,6 +18,12 @@
                     Text="Set YouTube video"
                     Pressed="MediaChangeBtn_OnClick">
             </Button>
+            <Button x:Name="MediaExternalBtn"
+                    BackgroundColor="{StaticResource SecondaryButtonColor}"
+                    TextColor="{StaticResource TextColor}"
+                    Text="Open video on YouTube"
+                    Pressed="MediaExternalBtn_OnClick">
+            </Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
