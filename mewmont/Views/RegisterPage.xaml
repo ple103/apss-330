@@ -11,6 +11,7 @@
             <Entry x:Name="UsernameEntry"
                    Placeholder="Username"
                    PlaceholderColor="LightGray"
+                   TextChanged="EntryTextChanged"
                    TextColor="White"
                    RelativeLayout.XConstraint =
                         "{ConstraintExpression Type=RelativeToParent,
@@ -24,6 +25,7 @@
             <Entry x:Name="PasswordEntry"
                    Placeholder="Password"
                    IsPassword="True"
+                   TextChanged="EntryTextChanged"
                    PlaceholderColor="LightGray"
                    TextColor="White"
                    RelativeLayout.XConstraint =

@@ -41,5 +41,20 @@ namespace mewmont
                 await Navigation.PopAsync();
             }
         }
+
+        /// <summary>
+        /// Check if the entry lengths are of acceptable size.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void EntryTextChanged(object sender, EventArgs e)
+        {
+            var entry = sender as Entry;
+            if (entry.Text.Length > 16)
+            {
+                entry.Text = entry.Text.Substring(0, 16);
+                await DisplayAlert("Warning", "The username or password cannot be longer than 16 characters.", "Oh ok");
+            }
+        }
     }
 }

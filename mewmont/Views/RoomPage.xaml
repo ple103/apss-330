@@ -143,6 +143,7 @@
                     </StackLayout>
                     <Entry x:Name="MessageEntry"
                        Placeholder="Aa" 
+                       TextChanged="MessageTextChanged"
                        BackgroundColor="{StaticResource PanelBackgroundColor}" 
                        PlaceholderColor="Gray" 
                        TextColor="{StaticResource TextColor}"

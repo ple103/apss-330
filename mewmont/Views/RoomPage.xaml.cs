@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Timers;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -20,6 +21,7 @@ namespace mewmont
         JsonSerializer serializer = new JsonSerializer();
         int RoomId;
         bool IsPrivate;
+        bool messageTimed = false;
 
         IVidyoController _vidyoController = null;
         VidyoViewModel _viewModel = VidyoViewModel.GetInstance();
@@ -32,6 +34,7 @@ namespace mewmont
             thisViewModel = ((RoomViewModel)this.BindingContext);
             App.RoomManager.MediaChanged += new EventHandler(RoomMediaChanged);
             App.RoomManager.MessageRecieved += new EventHandler(MessageRecieved);
+            //thisViewModel.messageTimer.Elapsed += new ElapsedEventHandler(MessageTimerElapsed);
             createMediaViewerVideo();
         }
 
@@ -77,6 +80,21 @@ namespace mewmont
             //App._vidyoController.Connect(Constants.VidyoHost, App.UserManager.User.VidyoToken, App.UserManager.User.Username, App.RoomManager.Room.Id.ToString());
             thisViewModel.IsLoading = false;
             ChatBoxContent.ItemsSource = App.RoomManager.Room.Chatlog;
+        }
+
+        /// <summary>
+        /// Check if the entry lengths are of acceptable size.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void MessageTextChanged(object sender, EventArgs e)
+        {
+            var entry = sender as Entry;
+            if (entry.Text.Length > 500)
+            {
+                entry.Text = entry.Text.Substring(0, 500);
+                await DisplayAlert("Warning", "The message length cannot be longer than 500 characters.", "Oh ok");
+            }
         }
 
         private void MessageEntry_Focused(object sender, FocusEventArgs e)
@@ -253,12 +271,39 @@ namespace mewmont
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SendMessageBtn_Pressed(object sender, System.EventArgs e)
+        private async void SendMessageBtn_Pressed(object sender, System.EventArgs e)
         {
-            App.RoomManager.SendMessage(thisViewModel.MessageBody, App.UserManager.User.Username);
-            // Clear the send message entry
-            thisViewModel.MessageBody = null;
+            // Check if the last message was sent too soon ago.
+            if (!messageTimed)
+            {
+                // Check if the message is blank
+                if (thisViewModel.MessageBody == null || thisViewModel.MessageBody == "")
+                {
+                    await DisplayAlert("Warning", "You cannot send empty messages", "Oh ok");
+                }
+                else
+                {
+                    App.RoomManager.SendMessage(thisViewModel.MessageBody, App.UserManager.User.Username);
+                    // Clear the send message entry
+                    thisViewModel.MessageBody = null;
+                    thisViewModel.startMessageTimer();
+                    messageTimed = true;
+                }
+            } else
+            {
+                await DisplayAlert("Warning", "You must wait 5 seconds before you can send another message.", "Oh ok");
+            }
         }
+
+        ///// <summary>
+        ///// Stop limiting messages after the time has elapsed.
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private void MessageTimerElapsed(object sender, System.EventArgs e)
+        //{
+        //    messageTimed = false;
+        //}
 
         public void InitializeVidyo()
         {

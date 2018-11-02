@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Timers;
 using mewmont.Models;
 using Xamarin.Forms;
 
@@ -148,9 +149,26 @@ namespace mewmont
         }
 
         /// <summary>
-        /// The message typed by the user to broadcast to the room
+        /// The timer for the duration between messages.
         /// </summary>
-        private string messageBody;
+        public Timer messageTimer = new Timer
+            {
+
+                // Limit the rate of messages to 3000 milliseconds.
+                Interval = 3000,
+                // Ensure the message timer doesn't run repeatedly.
+                AutoReset = false
+            };
+
+        public void startMessageTimer()
+        {
+            messageTimer.Start();
+        }
+
+    /// <summary>
+    /// The message typed by the user to broadcast to the room
+    /// </summary>
+    private string messageBody;
         public string MessageBody
         {
             set
