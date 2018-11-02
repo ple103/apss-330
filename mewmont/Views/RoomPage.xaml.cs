@@ -34,7 +34,7 @@ namespace mewmont
             thisViewModel = ((RoomViewModel)this.BindingContext);
             App.RoomManager.MediaChanged += new EventHandler(RoomMediaChanged);
             App.RoomManager.MessageRecieved += new EventHandler(MessageRecieved);
-            //thisViewModel.messageTimer.Elapsed += new ElapsedEventHandler(MessageTimerElapsed);
+            thisViewModel.messageTimer.Elapsed += new ElapsedEventHandler(MessageTimerElapsed);
             createMediaViewerVideo();
         }
 
@@ -90,10 +90,13 @@ namespace mewmont
         private async void MessageTextChanged(object sender, EventArgs e)
         {
             var entry = sender as Entry;
-            if (entry.Text.Length > 500)
+            if (entry.Text != null)
             {
-                entry.Text = entry.Text.Substring(0, 500);
-                await DisplayAlert("Warning", "The message length cannot be longer than 500 characters.", "Oh ok");
+                if (entry.Text.Length > 500)
+                {
+                    entry.Text = entry.Text.Substring(0, 500);
+                    await DisplayAlert("Warning", "The message length cannot be longer than 500 characters.", "Oh ok");
+                }
             }
         }
 
@@ -295,15 +298,15 @@ namespace mewmont
             }
         }
 
-        ///// <summary>
-        ///// Stop limiting messages after the time has elapsed.
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //private void MessageTimerElapsed(object sender, System.EventArgs e)
-        //{
-        //    messageTimed = false;
-        //}
+        /// <summary>
+        /// Stop limiting messages after the time has elapsed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MessageTimerElapsed(object sender, System.EventArgs e)
+        {
+            messageTimed = false;
+        }
 
         public void InitializeVidyo()
         {
