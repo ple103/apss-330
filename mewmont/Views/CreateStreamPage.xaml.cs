@@ -22,8 +22,8 @@ namespace mewmont
         {
             try
             {
-                await App.RoomManager.CreateRoom(RoomTitleEntry.Text, MediaIdEntry.Text);
-                await Navigation.PushAsync(new RoomPage(App.RoomManager.Room.Id));
+                await App.RoomManager.CreateRoom(RoomTitleEntry.Text, MediaIdEntry.Text, PasskeyEntry.Text);
+                await Navigation.PushAsync(new RoomPage(App.RoomManager.Room.Id, false));
             } catch (Exception ex)
             {
                 await DisplayAlert("Error", ex.Message, "OK");

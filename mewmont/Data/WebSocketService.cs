@@ -17,10 +17,11 @@ namespace mewmont.Data
         JsonSerializer serializer = new JsonSerializer();
         public string token { get; set; }
         public int roomId { get; set; }
+        public bool isPrivate { get; set; }
 
         public WebSocketService()
         {
-            
+            isPrivate = false;
         }
 
         private async Task SendData(String str)
@@ -36,6 +37,7 @@ namespace mewmont.Data
             data.videoId = videoId;
             data.room = roomId;
             data.token = token;
+            data.isPrivate = isPrivate;
 
             string sendingData = JsonConvert.SerializeObject(data);
             await SendData(sendingData);
@@ -47,6 +49,7 @@ namespace mewmont.Data
             data.media = media;
             data.room = roomId;
             data.token = token;
+            data.isPrivate = isPrivate;
 
             string sendingData = JsonConvert.SerializeObject(data);
             await SendData(sendingData);
@@ -62,6 +65,7 @@ namespace mewmont.Data
             data.messageData = messageData;
             data.token = token;
             data.room = roomId;
+            data.isPrivate = isPrivate;
 
             string sendingData = JsonConvert.SerializeObject(data);
             await SendData(sendingData);
@@ -73,6 +77,7 @@ namespace mewmont.Data
             data.playbackState = state;
             data.room = roomId;
             data.token = token;
+            data.isPrivate = isPrivate;
 
             string sendingData = JsonConvert.SerializeObject(data);
             await SendData(sendingData);
@@ -83,6 +88,7 @@ namespace mewmont.Data
             GetMedia data = new GetMedia();
             data.room = roomId;
             data.token = token;
+            data.isPrivate = isPrivate;
 
             string sendingData = JsonConvert.SerializeObject(data);
             await SendData(sendingData);
@@ -94,7 +100,13 @@ namespace mewmont.Data
             ws = new ClientWebSocket();
             await ws.ConnectAsync(new Uri(Constants.StreamrWSUrl), CancellationToken.None);
 
-            var roomConnectData = "{\"room\":\"" + roomId + "\", \"msg\":\"connect\"}";
+            string isPrivateMsg = "false";
+            if (isPrivate)
+            {
+                isPrivateMsg = "true";
+            }
+
+            var roomConnectData = "{\"room\":\"" + roomId + "\", \"msg\":\"connect\", \"isPrivate\":" + isPrivateMsg + "}";
             await SendData(roomConnectData);
 
             ArraySegment<Byte> readbuffer = new ArraySegment<byte>(new Byte[8192]);

@@ -20,39 +20,11 @@
                 <Entry x:Name="MediaIdEntry"
                        PlaceholderColor="White"
                        TextColor="{StaticResource TextColor}"/>
-                <Label Text="Public or Private Stream ?"
+                <Label Text="Enter a passkey to make private"
                        TextColor="{StaticResource TextColor}"/>
-                <Picker x:Name="picker" Title="Select type">
-                  <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                      <x:String>Public</x:String>
-                      <x:String>Private</x:String>
-                    </x:Array>
-                  </Picker.ItemsSource>
-                </Picker>
-                <Label Text="{Binding Source={x:Reference picker}, Path=SelectedItem}" />
-                <Label Text="Enable video chat ?"
+                <Entry x:Name="PasskeyEntry"
+                       PlaceholderColor="{StaticResource TextColor}"
                        TextColor="{StaticResource TextColor}"/>
-                <Picker x:Name="picker1" Title="Select" TextColor="{StaticResource TextColor}">
-                  <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                      <x:String>Yes</x:String>
-                      <x:String>No</x:String>
-                    </x:Array>
-                  </Picker.ItemsSource>
-                </Picker>
-                <Label Text="{Binding Source={x:Reference picker1}, Path=SelectedItem}" />
-                <Label Text="Enable comments ?"
-                       TextColor="{StaticResource TextColor}"/>
-                <Picker x:Name="picker2" Title="Select" TextColor="{StaticResource TextColor}">
-                  <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                      <x:String>Yes</x:String>
-                      <x:String>No</x:String>
-                    </x:Array>
-                  </Picker.ItemsSource>
-                </Picker>
-                <Label Text="{Binding Source={x:Reference picker2}, Path=SelectedItem}" />
                 <Label Text="By clicking start, you hearby declare that you are responsible for the content you share to other users and this platform. If any prohibited content is showed and legal action is taken then you will be responsible according to your country's laws. You also hearby agree that you are responsible for any third-party ads are shown in the stream (from the video) and Streamr will not be held responsible, should there be any legal issues and action takes place."
                        TextColor="{StaticResource TextColor}"/>
                 <Grid ColumnSpacing="20">

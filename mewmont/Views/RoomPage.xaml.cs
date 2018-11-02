@@ -19,14 +19,16 @@ namespace mewmont
         HybridWebViewV2 MediaViewerVideo;
         JsonSerializer serializer = new JsonSerializer();
         int RoomId;
+        bool IsPrivate;
 
         IVidyoController _vidyoController = null;
         VidyoViewModel _viewModel = VidyoViewModel.GetInstance();
 
-        public RoomPage(int roomId)
+        public RoomPage(int roomId, bool isPrivate)
 		{
 			InitializeComponent();
             RoomId = roomId;
+            IsPrivate = isPrivate;
             thisViewModel = ((RoomViewModel)this.BindingContext);
             App.RoomManager.MediaChanged += new EventHandler(RoomMediaChanged);
             App.RoomManager.MessageRecieved += new EventHandler(MessageRecieved);

@@ -10,7 +10,6 @@ namespace mewmont.Models
         private string name;
         private Media currentMedia;
         private Permission defaultPermissions;
-        private string passkey;
         private List<Message> chatlog = new List<Message>();
         private RoomMember[] roomMembers;
 
@@ -40,8 +39,8 @@ namespace mewmont.Models
 
         public string Passkey
         {
-            get { return passkey; }
-            set { passkey = value; }
+            get;
+            set;
         }
 
         public List<Message> Chatlog
@@ -64,21 +63,6 @@ namespace mewmont.Models
         public void AddMessage(Message message)
         {
             chatlog.Add(message);
-        }
-
-        public void ChangeMedia(Media newMedia)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ChangePermissions()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void PromoteGuestToMember()
-        {
-            throw new NotImplementedException();
         }
 
         public void AssignColourToMember(RoomMember member, Color colour)

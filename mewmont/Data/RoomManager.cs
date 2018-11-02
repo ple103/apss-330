@@ -27,6 +27,7 @@ namespace mewmont.Data
 
         public RoomManager(WebSocketService wsService)
         {
+            Room = new Room();
             restService = App.restService;
             webSocketService = wsService;
             youtubeClient = new YoutubeClient();
@@ -39,10 +40,11 @@ namespace mewmont.Data
         /// <param name="title">The title of the room</param>
         /// <param name="rawMediaUrl">The URL of the YouTube video</param>
         /// <returns></returns>
-        public async Task CreateRoom(string title, string rawMediaUrl)
+        public async Task CreateRoom(string title, string rawMediaUrl, string passkey)
         {
             Room sendingRoom = new Room();
             sendingRoom.Title = title;
+            sendingRoom.Passkey = passkey;
 
             // Extracts the video ID from the YouTube URL that was provided by the user
             sendingRoom.CurrentMedia = new Media(YouTubeNavigation.YouTubeIDFromRawUrl(rawMediaUrl));
@@ -58,7 +60,13 @@ namespace mewmont.Data
         /// <returns></returns>
         public async Task StartRoomConnection(int id)
         {
-            await GetRoomData(id);
+            if (Room.Passkey == null)
+            {
+                await GetRoomData(id);
+            } else
+            {
+                await GetPrivateRoomData(Room.Passkey);
+            }
             webSocketService.StartLoadingData(id);
         }
 
@@ -78,6 +86,18 @@ namespace mewmont.Data
         public async Task<bool> GetRoomData(int id)
         {
             Room = await restService.GetRoomData(id);
+            return true;
+        }
+
+        /// <summary>
+        /// Sets the current Room to that specified from the server
+        /// </summary>
+        /// <param name="passkey">The passkey of the private room to retrieve</param>
+        /// <returns></returns>
+        public async Task<bool> GetPrivateRoomData(string passkey)
+        {
+            webSocketService.isPrivate = true;
+            Room = await restService.GetPrivateRoomData(passkey);
             return true;
         }
 

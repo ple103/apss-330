@@ -9,6 +9,8 @@ namespace mewmont.Data
     {
         Task<Room> GetRoomData(int id);
 
+        Task<Room> GetPrivateRoomData(string passkey);
+
         Task<Room> PutRoomData(Room creatingRoom);
 
         Task<List<Room>> GetRoomsData();

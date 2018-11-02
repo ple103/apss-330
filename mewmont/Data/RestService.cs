@@ -100,6 +100,40 @@ namespace mewmont.Data
         }
 
         /// <summary>
+        /// Retrieves a private room from the server if valid
+        /// </summary>
+        /// <param name="passkey">The passkey of the room to retrieve</param>
+        /// <returns></returns>
+        public async Task<Room> GetPrivateRoomData(string passkey)
+        {
+            Room = new Room();
+            #region use_RESTAPI_to_get_data
+            var uri = new Uri(string.Format(Constants.StreamrAPIUrl + "room/private/" + passkey, string.Empty));
+
+            try
+            {
+                var response = await client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    Room = JsonConvert.DeserializeObject<Room>(content);
+                    Debug.WriteLine(@"              SUCCESS fetching items");
+
+                }
+                else
+                {
+                    Debug.WriteLine(@"               ERROR while fetching items: {0}", response.StatusCode);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"              ERROR Exception Caught while fetching items: {0}", ex.Message);
+            }
+            #endregion
+            return Room;
+        }
+
+        /// <summary>
         /// Retrieves a list of public rooms from the server
         /// </summary>
         /// <returns>A list of rooms from the server</returns>

@@ -10,6 +10,7 @@ namespace mewmont.Models.SocketSenders
         public string token { get; set; }
         public int room { get; set; }
         public Media media { get; set; }
+        public bool isPrivate { get; set; }
 
         public UpdateMedia()
         {

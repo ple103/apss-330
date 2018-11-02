@@ -32,7 +32,7 @@ namespace mewmont
         void OnStreamSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var room = e.SelectedItem as Room;
-            var roomPage = new RoomPage(room.Id);
+            var roomPage = new RoomPage(room.Id, false);
             Navigation.PushAsync(roomPage);
         }
 
